@@ -9,3 +9,9 @@
   align-items: center; */
   box-sizing: border-box;
 }
+
+@media screen and (max-width: 920px) {
+  .root {
+    /* max-width: 282px; */
+  }
+}

@@ -48,6 +48,11 @@
   padding: 0 0 0 18px;
   height: 24px;
 }
+
+.profile__edit-button:hover {
+  opacity: 60%;
+}
+
 .profile__lower-text {
   padding-top: 8px;
   font-size: 18px;
@@ -59,7 +64,162 @@
   border: none;
   height: 50px;
 }
+
+.profile__add:hover {
+  opacity: 60%;
+}
+
+.elements {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(282px, 1fr));
+  grid-template-rows: repeat(2, 361px);
+  gap: 17px 20px;
+  padding-top: 51px;
+}
+.element {
+  height: 361px;
+  width: 282px;
+
+  border-radius: 10px;
+  background-color: #fff;
+  overflow: hidden;
+}
+.element__mask {
+  height: 282px;
+  width: 282px;
+}
+.element__text-wrap {
+  display: flex;
+  justify-content: space-between;
+  width: 246px;
+  height: 27px;
+  margin: auto;
+  padding-top: 25px;
+}
+
+.element__card-name {
+  margin: 0;
+  font-weight: 900;
+  font-size: 24px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.element__like-btn {
+  margin: 0;
+  height: 19px;
+  min-width: 22px;
+  padding: 0;
+  background-image: url(./../images/like.svg);
+  background-color: #fff;
+  border: none;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.element__like-btn:hover {
+  opacity: 50%;
+}
+
+.element__like-btn:active {
+  background-image: url(./../images/like-active.svg);
+}
+
+.element__like-btn:active:hover {
+  opacity: 100%;
+}
 .footer {
   color: #545454;
-  padding-top: 66px;
+  font-size: 18px;
+  font-weight: 400;
+  padding-top: 67px;
+  padding-bottom: 60px;
+}
+
+.popup {
+  display: none;
+  /* opacity: 50%; */
+  position: fixed;
+  min-width: 100%;
+  min-height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup_opened {
+  display: block;
+}
+
+.popup__container {
+  height: 330px;
+  width: 430px;
+  background-color: #fff;
+  position: absolute;
+  top: calc((100% - 330px) / 2);
+  left: calc((100% - 430px) / 2);
+  border-radius: 10px;
+}
+
+.popup__container-name {
+  margin: 0;
+  padding-top: 34px;
+  padding-left: 36px;
+  font-size: 24px;
+  font-weight: 900;
+}
+.popup__input-field {
+  display: block;
+  width: 358px;
+  height: 27px;
+  margin: 54px auto 0;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.popup__input-field:last-of-type {
+  margin: 30px auto 0;
+}
+
+.popup__btn-save {
+  display: block;
+  margin: 48px auto 0;
+  width: 358px;
+  height: 50px;
+  border: none;
+  font-weight: 400;
+  font-size: 18px;
+  padding: 0;
+  color: #fff;
+  background-color: #000;
+  cursor: pointer;
+}
+.popup__btn-save:hover {
+  opacity: 80%;
+}
+.popup__btn-close {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+}
+
+.popup__btn-close:hover {
+  opacity: 60%;
+}
+.popup__cross-image {
+  object-fit: contain;
+  object-position: center;
 }

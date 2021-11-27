@@ -1,0 +1,4 @@
+.popup__cross-image {
+  object-fit: contain;
+  object-position: center;
+}

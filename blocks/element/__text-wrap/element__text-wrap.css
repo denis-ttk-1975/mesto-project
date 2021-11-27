@@ -1,0 +1,8 @@
+.element__text-wrap {
+  display: flex;
+  justify-content: space-between;
+  width: 246px;
+  height: 27px;
+  margin: auto;
+  padding-top: 25px;
+}

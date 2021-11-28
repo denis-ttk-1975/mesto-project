@@ -16,7 +16,6 @@
 
 @media screen and (max-width: 920px) {
   .profile__add {
-    height: 50px;
     width: 282px;
   }
 }

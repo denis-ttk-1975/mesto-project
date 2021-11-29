@@ -3,6 +3,7 @@
   border: none;
   padding: 0 0 0 18px;
   height: 24px;
+  cursor: pointer;
 }
 
 .profile__edit-button:hover {

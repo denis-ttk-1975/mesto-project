@@ -41,7 +41,7 @@
         </button>
       </section>
       <section class="elements">
-        <div class="element">
+        <!-- <div class="element">
           <img
             src="./images/karachaevsk.jpg"
             alt="Карачаевск"
@@ -98,7 +98,7 @@
             <h2 class="element__card-name">Карачаево-Черкессия</h2>
             <button type="button" class="element__like-btn"></button>
           </div>
-        </div>
+        </div> -->
       </section>
     </main>
     <footer class="footer">
@@ -137,6 +137,15 @@
         </button>
       </div>
     </div>
+    <template id="card-template">
+      <div class="element">
+        <img src="" alt="" class="element__mask" />
+        <div class="element__text-wrap">
+          <h2 class="element__card-name"></h2>
+          <button type="button" class="element__like-btn"></button>
+        </div>
+      </div>
+    </template>
     <script src="./scripts/index.js" defer></script>
   </body>
 </html>

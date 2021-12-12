@@ -27,6 +27,7 @@
 @import url(./../blocks/element/__text-wrap/element__text-wrap.css);
 @import url(./../blocks/element/__card-name/element__card-name.css);
 @import url(./../blocks/element/__like-btn/element__like-btn.css);
+@import url(./../blocks/element/__delete/element__delete.css);
 
 @import url(./../blocks/footer/footer.css);
 @import url(./../blocks/footer/__text/footer__text.css);

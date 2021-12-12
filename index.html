@@ -105,7 +105,7 @@
       <p class="footer__text">&COPY; 2021 Mesto Russia</p>
     </footer>
 
-    <div class="popup">
+    <div class="popup popup-profile-input">
       <!-- popup_opened писать сюда -->
       <div class="popup__container">
         <form name="user-data" class="popup__userdata-input">
@@ -115,18 +115,54 @@
             type="text"
             class="popup__input-field"
             name="full_name"
-            value="Жак-Ив Кусто"
+            value=""
+            placeholder="Имя"
             required
           />
           <input
             type="text"
             class="popup__input-field"
             name="about"
-            value="Исследователь океана"
+            value=""
+            placeholder="Профессия"
             required
           />
 
           <button type="submit" class="popup__btn-save">Сохранить</button>
+        </form>
+        <button type="button" class="popup__btn-close">
+          <img
+            src="./images/close_icon.svg"
+            alt="Закрыть"
+            class="popup__cross-image"
+          />
+        </button>
+      </div>
+    </div>
+    <div class="popup popup-new-place">
+      <!-- popup_opened писать сюда -->
+      <div class="popup__container">
+        <form name="user-data" class="popup__userdata-input">
+          <h2 class="popup__container-name">Новое место</h2>
+
+          <input
+            type="text"
+            class="popup__input-field"
+            name="place_name"
+            value=""
+            placeholder="Название"
+            required
+          />
+          <input
+            type="text"
+            class="popup__input-field"
+            name="picture_link"
+            value=""
+            placeholder="Ссылка на картинку"
+            required
+          />
+
+          <button type="submit" class="popup__btn-save">Создать</button>
         </form>
         <button type="button" class="popup__btn-close">
           <img

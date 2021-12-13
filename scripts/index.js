@@ -29,6 +29,8 @@ const popupBigPictureFigcaption = popupBigPicture.querySelector(
   ".popup__picture-figcaption"
 );
 
+const popupWindows = document.querySelectorAll(".popup");
+
 const elementsArea = document.querySelector(".elements");
 const cardTemplate = document.querySelector("#card-template").content;
 const initialCards = [
@@ -150,3 +152,7 @@ elementsArea.addEventListener("click", function (evt) {
 });
 
 createElementsArea(initialCards);
+
+popupWindows.forEach(function (item, index) {
+  item.style.display = "flex";
+});

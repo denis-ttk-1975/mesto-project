@@ -21,6 +21,14 @@ const popupNewPlaceForm = popupNewPlaceInput.querySelector(
 );
 const inputsNewPlacePopup = popupNewPlaceForm.querySelectorAll("input");
 
+const popupBigPicture = document.querySelector(".popup-big-picture");
+const popupCloseBigPictureButton =
+  popupBigPicture.querySelector(".popup__btn-close");
+const popupBigPictureImage = popupBigPicture.querySelector(".popup__picture");
+const popupBigPictureFigcaption = popupBigPicture.querySelector(
+  ".popup__picture-figcaption"
+);
+
 const elementsArea = document.querySelector(".elements");
 const cardTemplate = document.querySelector("#card-template").content;
 const initialCards = [
@@ -92,7 +100,6 @@ function closeNewPlacePopup() {
 function formSubmitNewPlaceHandler(evt) {
   evt.preventDefault();
   console.log(inputsNewPlacePopup[1]);
-  // alert(inputsNewPlacePopup[0].value);
   const newElement = cardTemplate.querySelector(".element").cloneNode(true);
   newElement.querySelector(".element__mask").src = inputsNewPlacePopup[1].value;
   newElement.querySelector(".element__mask").alt = inputsNewPlacePopup[0].value;
@@ -103,6 +110,17 @@ function formSubmitNewPlaceHandler(evt) {
   popupNewPlaceInput.classList.remove("popup_opened");
 }
 
+function closeBigPicturePopup() {
+  popupBigPicture.classList.remove("popup_opened");
+}
+
+function pictureFullViewHandler(clickedPicture) {
+  popupBigPictureImage.alt = clickedPicture.alt;
+  popupBigPictureImage.src = clickedPicture.src;
+  popupBigPictureFigcaption.textContent = clickedPicture.alt;
+  popupBigPicture.classList.add("popup_opened");
+}
+
 profileEditButton.addEventListener("click", openProfilePopup);
 popupCloseProfileInputButton.addEventListener("click", closeProfilePopup);
 popupSaveButton.addEventListener("click", formSubmitProfileHandler);
@@ -110,5 +128,25 @@ popupSaveButton.addEventListener("click", formSubmitProfileHandler);
 profileAddPlaceButton.addEventListener("click", openNewPlacePopup);
 popupCloseNewPlaceButton.addEventListener("click", closeNewPlacePopup);
 popupCreateButton.addEventListener("click", formSubmitNewPlaceHandler);
+
+popupCloseBigPictureButton.addEventListener("click", closeBigPicturePopup);
+
+elementsArea.addEventListener("click", function (evt) {
+  let eventTarget = evt.target;
+  if (eventTarget.dataset.trap) {
+    switch (eventTarget.dataset.trap) {
+      case "pictureFullViewHandler":
+        pictureFullViewHandler(eventTarget);
+        break;
+      case "likeButtonHandler":
+        eventTarget.classList.toggle("element__like-btn_liked");
+        break;
+      case "deleteButtonHandler":
+        let clickedCard = eventTarget.closest(".element");
+        clickedCard.remove();
+        break;
+    }
+  }
+});
 
 createElementsArea(initialCards);

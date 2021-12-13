@@ -105,7 +105,7 @@
       <p class="footer__text">&COPY; 2021 Mesto Russia</p>
     </footer>
 
-    <div class="popup popup-profile-input">
+    <div class="popup popup_50-opacity popup-profile-input">
       <!-- popup_opened писать сюда -->
       <div class="popup__container">
         <form name="user-data" class="popup__userdata-input">
@@ -139,7 +139,7 @@
         </button>
       </div>
     </div>
-    <div class="popup popup-new-place">
+    <div class="popup popup_50-opacity popup-new-place">
       <!-- popup_opened писать сюда -->
       <div class="popup__container">
         <form name="user-data" class="popup__userdata-input">
@@ -173,14 +173,47 @@
         </button>
       </div>
     </div>
+
+    <div class="popup popup_90-opacity popup-big-picture">
+      <!-- popup_opened писать сюда -->
+      <div class="popup__figure-container">
+        <figure class="popup__picture-container">
+          <img src="./images/tree.jpg" alt="Домбай" class="popup__picture" />
+          <figcaption class="popup__picture-figcaption">Домбай</figcaption>
+        </figure>
+
+        <button type="button" class="popup__btn-close">
+          <img
+            src="./images/close_icon.svg"
+            alt="Закрыть"
+            class="popup__cross-image"
+          />
+        </button>
+      </div>
+    </div>
+
     <template id="card-template">
       <div class="element">
-        <img src="" alt="" class="element__mask" />
+        <img
+          src=""
+          alt=""
+          class="element__mask"
+          data-trap="pictureFullViewHandler"
+        />
         <div class="element__text-wrap">
           <h2 class="element__card-name"></h2>
-          <button type="button" class="element__like-btn"></button>
+          <button
+            type="button"
+            class="element__like-btn"
+            data-trap="likeButtonHandler"
+          ></button>
         </div>
-        <img src="./images/Trash.svg" alt="Удалить" class="element__delete" />
+        <img
+          src="./images/Trash.svg"
+          alt="Удалить"
+          class="element__delete"
+          data-trap="deleteButtonHandler"
+        />
       </div>
     </template>
     <script src="./scripts/index.js" defer></script>

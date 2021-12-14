@@ -153,6 +153,8 @@ elementsArea.addEventListener("click", function (evt) {
 
 createElementsArea(initialCards);
 
+// delay for flex apple to popup windows in order not let to appear popups till their opacity will come to zero
+
 setTimeout(
   popupWindows.forEach(function (item) {
     item.classList.add("popup_smooth-opacity");

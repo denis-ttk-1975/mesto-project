@@ -154,5 +154,5 @@ elementsArea.addEventListener("click", function (evt) {
 createElementsArea(initialCards);
 
 popupWindows.forEach(function (item) {
-  item.style.display = "flex";
+  item.classList.add("popup-smooth-opacity");
 });

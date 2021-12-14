@@ -4,7 +4,7 @@
   justify-content: center;
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s 1s, opacity 1s 0s;
+  /* transition: visibility 0s 1s, opacity 1s 0s; */
   /* opacity: 50%; */
   position: fixed;
   min-width: 100%;
@@ -14,4 +14,9 @@
   left: 0;
   right: 0;
   /* background-color: rgba(0, 0, 0, 0.5); */
+}
+
+.popup-smooth-opacity {
+  transition: visibility 0s 1s, opacity 1s 0s;
+  display: flex;
 }

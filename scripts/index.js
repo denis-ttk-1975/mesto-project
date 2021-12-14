@@ -155,7 +155,7 @@ createElementsArea(initialCards);
 
 setTimeout(
   popupWindows.forEach(function (item) {
-    item.classList.add("popup-smooth-opacity");
+    item.classList.add("popup_smooth-opacity");
   }),
   1000
 );

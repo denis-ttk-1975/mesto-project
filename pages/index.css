@@ -48,4 +48,5 @@
 @import url(./../blocks/popup/__picture/popup__picture.css);
 @import url(./../blocks/popup/__picture-container/popup__picture-container.css);
 @import url(./../blocks/popup/__figure-container/popup__figure-container.css);
+@import url(./../blocks/popup/_smoth-opacity/popup_smooth-opacity.css);
 /* @import url(./../blocks/style.css); */

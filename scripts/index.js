@@ -153,6 +153,13 @@ elementsArea.addEventListener("click", function (evt) {
 
 createElementsArea(initialCards);
 
-popupWindows.forEach(function (item) {
-  item.classList.add("popup-smooth-opacity");
-});
+setTimeout(
+  popupWindows.forEach(function (item) {
+    item.classList.add("popup-smooth-opacity");
+  }),
+  1000
+);
+
+// popupWindows.forEach(function (item) {
+//   item.classList.add("popup-smooth-opacity");
+// });

@@ -3,8 +3,13 @@ const profileMemberName = document.querySelector(".profile__member-name");
 const profileMemberOccupation = document.querySelector(".profile__lower-text");
 const profileAddPlaceButton = document.querySelector(".profile__add");
 
+const profileInputForm = document.querySelector('form[name="user-data"]');
+const newPlaceInputForm = document.querySelector('form[name="new-place"]');
+
+console.log(profileInputForm, newPlaceInputForm);
+
 const popupProfileInput = document.querySelector(".popup-profile-input");
-const popupSaveButton = popupProfileInput.querySelector(".popup__btn-save");
+// const popupSaveButton = popupProfileInput.querySelector(".popup__btn-save");
 const popupCloseProfileInputButton =
   popupProfileInput.querySelector(".popup__btn-close");
 const popupInputForm = popupProfileInput.querySelector(
@@ -19,7 +24,7 @@ const inputsAboutProfilePopup = popupInputForm.querySelector(
 );
 
 const popupNewPlaceInput = document.querySelector(".popup-new-place");
-const popupCreateButton = popupNewPlaceInput.querySelector(".popup__btn-save");
+// const popupCreateButton = popupNewPlaceInput.querySelector(".popup__btn-save");
 const popupCloseNewPlaceButton =
   popupNewPlaceInput.querySelector(".popup__btn-close");
 const popupNewPlaceForm = popupNewPlaceInput.querySelector(
@@ -124,14 +129,14 @@ function saveProfileData(evt) {
 }
 
 function openNewPlacePopup() {
-  inputsPlaceNameNewPlacePopup.value = "";
-  inputsPictureLinkNewPlacePopup.value = "";
+  // inputsPlaceNameNewPlacePopup.value = "";
+  // inputsPictureLinkNewPlacePopup.value = "";
   openPopup(popupNewPlaceInput);
 }
 
 function closeNewPlacePopup() {
-  inputsPlaceNameNewPlacePopup.value = "";
-  inputsPictureLinkNewPlacePopup.value = "";
+  // inputsPlaceNameNewPlacePopup.value = "";
+  // inputsPictureLinkNewPlacePopup.value = "";
   closePopup(popupNewPlaceInput);
 }
 
@@ -150,6 +155,8 @@ function addNewPlaceCard(evt) {
     inputsPlaceNameNewPlacePopup.value
   );
   elementsArea.prepend(newElement);
+  inputsPlaceNameNewPlacePopup.value = "";
+  inputsPictureLinkNewPlacePopup.value = "";
   closePopup(popupNewPlaceInput);
 }
 
@@ -177,11 +184,11 @@ function createElementsArea(array) {
 
 profileEditButton.addEventListener("click", openProfilePopup);
 popupCloseProfileInputButton.addEventListener("click", closeProfilePopup);
-popupSaveButton.addEventListener("click", saveProfileData);
+profileInputForm.addEventListener("submit", saveProfileData);
 
 profileAddPlaceButton.addEventListener("click", openNewPlacePopup);
 popupCloseNewPlaceButton.addEventListener("click", closeNewPlacePopup);
-popupCreateButton.addEventListener("click", addNewPlaceCard);
+newPlaceInputForm.addEventListener("submit", addNewPlaceCard);
 
 popupCloseBigPictureButton.addEventListener("click", closeBigPicturePopup);
 

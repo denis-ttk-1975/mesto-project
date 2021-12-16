@@ -147,7 +147,7 @@ function addNewPlaceCard(evt) {
   //   inputsPictureLinkNewPlacePopup.value;
   const newElement = createCard(
     inputsPictureLinkNewPlacePopup.value,
-    inputsPictureLinkNewPlacePopup.value
+    inputsPlaceNameNewPlacePopup.value
   );
   elementsArea.prepend(newElement);
   closePopup(popupNewPlaceInput);

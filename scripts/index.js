@@ -80,6 +80,30 @@ function closePopup(popup) {
   popup.classList.remove("popup_opened");
 }
 
+function createCard(source, title) {
+  const newCardElement = cardTemplate.querySelector(".element").cloneNode(true);
+  newCardElement.querySelector(".element__mask").src = source;
+  newCardElement.querySelector(".element__mask").alt = title;
+  newCardElement.querySelector(".element__card-name").textContent = title;
+  newCardElement
+    .querySelector(".element__mask")
+    .addEventListener("click", function (evt) {
+      openPictureFullView(evt.target);
+    });
+  newCardElement
+    .querySelector(".element__like-btn")
+    .addEventListener("click", function (evt) {
+      evt.target.classList.toggle("element__like-btn_liked");
+    });
+  newCardElement
+    .querySelector(".element__delete")
+    .addEventListener("click", function (evt) {
+      evt.target.closest(".element").remove();
+    });
+  //устанавливаете 3 обработчика(открытие, лайк, удаление)
+  return newCardElement; // возвращаете готовую карточку
+}
+
 function openProfilePopup() {
   inputsFullNameProfilePopup.value = profileMemberName.textContent;
   inputsAboutProfilePopup.value = profileMemberOccupation.textContent;
@@ -92,7 +116,7 @@ function closeProfilePopup() {
   closePopup(popupProfileInput);
 }
 
-function formSubmitProfileHandler(evt) {
+function saveProfileData(evt) {
   evt.preventDefault();
   profileMemberName.textContent = inputsFullNameProfilePopup.value;
   profileMemberOccupation.textContent = inputsAboutProfilePopup.value;
@@ -114,14 +138,17 @@ function closeNewPlacePopup() {
 function addNewPlaceCard(evt) {
   evt.preventDefault();
 
-  const newElement = cardTemplate.querySelector(".element").cloneNode(true);
-  newElement.querySelector(".element__mask").src =
-    inputsPictureLinkNewPlacePopup.value;
-  newElement.querySelector(".element__mask").alt =
-    inputsPlaceNameNewPlacePopup.value;
-  newElement.querySelector(".element__card-name").textContent =
-    inputsPlaceNameNewPlacePopup.value;
-
+  // const newElement = cardTemplate.querySelector(".element").cloneNode(true);
+  // newElement.querySelector(".element__mask").src =
+  //   inputsPictureLinkNewPlacePopup.value;
+  // newElement.querySelector(".element__mask").alt =
+  //   inputsPlaceNameNewPlacePopup.value;
+  // newElement.querySelector(".element__card-name").textContent =
+  //   inputsPictureLinkNewPlacePopup.value;
+  const newElement = createCard(
+    inputsPictureLinkNewPlacePopup.value,
+    inputsPictureLinkNewPlacePopup.value
+  );
   elementsArea.prepend(newElement);
   closePopup(popupNewPlaceInput);
 }
@@ -139,17 +166,18 @@ function openPictureFullView(clickedPicture) {
 
 function createElementsArea(array) {
   array.forEach(function (item) {
-    const newElement = cardTemplate.querySelector(".element").cloneNode(true);
-    newElement.querySelector(".element__mask").src = item.link;
-    newElement.querySelector(".element__mask").alt = item.name;
-    newElement.querySelector(".element__card-name").textContent = item.name;
+    // const newElement = cardTemplate.querySelector(".element").cloneNode(true);
+    // newElement.querySelector(".element__mask").src = item.link;
+    // newElement.querySelector(".element__mask").alt = item.name;
+    // newElement.querySelector(".element__card-name").textContent = item.name;
+    const newElement = createCard(item.link, item.name);
     elementsArea.prepend(newElement);
   });
 }
 
 profileEditButton.addEventListener("click", openProfilePopup);
 popupCloseProfileInputButton.addEventListener("click", closeProfilePopup);
-popupSaveButton.addEventListener("click", formSubmitProfileHandler);
+popupSaveButton.addEventListener("click", saveProfileData);
 
 profileAddPlaceButton.addEventListener("click", openNewPlacePopup);
 popupCloseNewPlaceButton.addEventListener("click", closeNewPlacePopup);
@@ -157,23 +185,23 @@ popupCreateButton.addEventListener("click", addNewPlaceCard);
 
 popupCloseBigPictureButton.addEventListener("click", closeBigPicturePopup);
 
-elementsArea.addEventListener("click", function (evt) {
-  const eventTarget = evt.target;
-  if (eventTarget.dataset.trap) {
-    switch (eventTarget.dataset.trap) {
-      case "openPictureFullView":
-        openPictureFullView(eventTarget);
-        break;
-      case "likeButtonHandler":
-        eventTarget.classList.toggle("element__like-btn_liked");
-        break;
-      case "deleteButtonHandler":
-        let clickedCard = eventTarget.closest(".element");
-        clickedCard.remove();
-        break;
-    }
-  }
-});
+// elementsArea.addEventListener("click", function (evt) {
+//   const eventTarget = evt.target;
+//   if (eventTarget.dataset.trap) {
+//     switch (eventTarget.dataset.trap) {
+//       case "openPictureFullView":
+//         openPictureFullView(eventTarget);
+//         break;
+//       case "likeButtonHandler":
+//         eventTarget.classList.toggle("element__like-btn_liked");
+//         break;
+//       case "deleteButtonHandler":
+//         let clickedCard = eventTarget.closest(".element");
+//         clickedCard.remove();
+//         break;
+//     }
+//   }
+// });
 
 createElementsArea(initialCards);
 

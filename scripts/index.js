@@ -6,7 +6,7 @@ const profileAddPlaceButton = document.querySelector(".profile__add");
 const profileInputForm = document.querySelector('form[name="user-data"]');
 const newPlaceInputForm = document.querySelector('form[name="new-place"]');
 
-console.log(profileInputForm, newPlaceInputForm);
+// console.log(profileInputForm, newPlaceInputForm);
 
 const popupProfileInput = document.querySelector(".popup-profile-input");
 // const popupSaveButton = popupProfileInput.querySelector(".popup__btn-save");

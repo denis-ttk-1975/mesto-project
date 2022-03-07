@@ -81,10 +81,13 @@ export function openPictureFullView(clickedPicture) {
 
 export function overlayClickHandler(event, popupName, callBackFunction) {
   let target = event.target;
+  console.log("target: ", target);
+  console.log("таргет или: ", target.closest(".popup__btn-save"));
+
   if (
-    target.closest(".popup-container") &&
-    !target.closest(".popup__btn-save") &&
-    !target.closest(".popup__btn-close")
+    target.closest(".popup__container") ||
+    target.closest(".popup__btn-save") ||
+    target.closest(".popup__btn-close")
   ) {
     event.stopPropagation();
   } else {

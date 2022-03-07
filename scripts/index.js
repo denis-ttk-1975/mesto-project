@@ -1,3 +1,5 @@
+import { toggleButtonState } from "./validate.js";
+
 const profileEditButton = document.querySelector(".profile__edit-button");
 const profileMemberName = document.querySelector(".profile__member-name");
 const profileMemberOccupation = document.querySelector(".profile__lower-text");
@@ -112,6 +114,10 @@ function createCard(source, title) {
 function openProfilePopup() {
   inputsFullNameProfilePopup.value = profileMemberName.textContent;
   inputsAboutProfilePopup.value = profileMemberOccupation.textContent;
+  toggleButtonState(
+    Array.from(popupProfileInput.querySelectorAll(".popup__input-field")),
+    popupProfileInput.querySelector('[type = "submit"]')
+  );
   openPopup(popupProfileInput);
 }
 
@@ -131,6 +137,10 @@ function saveProfileData(evt) {
 function openNewPlacePopup() {
   // inputsPlaceNameNewPlacePopup.value = "";
   // inputsPictureLinkNewPlacePopup.value = "";
+  toggleButtonState(
+    Array.from(popupNewPlaceInput.querySelectorAll(".popup__input-field")),
+    popupNewPlaceInput.querySelector('[type = "submit"]')
+  );
   openPopup(popupNewPlaceInput);
 }
 

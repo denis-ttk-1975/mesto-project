@@ -4,17 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mesto</title>
-    <link rel="stylesheet" href="./pages/index.css" />
+    <!-- <link rel="stylesheet" href="./pages/index.css" /> -->
   </head>
   <body class="root">
     <header class="header">
-      <img src="./images/logo_mesto-russia.svg" alt="Логотип" class="logo" />
+      <img
+        src="<%=require('./images/logo_mesto-russia.svg')%>"
+        alt="Логотип"
+        class="logo"
+      />
     </header>
     <main class="main">
       <section class="profile">
         <div class="profile__member-data">
           <img
-            src="./images/jacques-yves_cousteau.jpg"
+            src="<%=require('./images/jacques-yves_cousteau.jpg')%>"
             alt="Портрет"
             class="profile__avatar"
           />
@@ -23,7 +27,7 @@
               <h1 class="profile__member-name">Жак-Ив Кусто</h1>
               <button type="button" class="profile__edit-button">
                 <img
-                  src="./images/edit_button.svg"
+                  src="<%=require('./images/edit_button.svg')%>"
                   alt="Клавиша редактирования"
                   class="profile__image-edit-button"
                 />
@@ -34,7 +38,7 @@
         </div>
         <button type="button" class="profile__add">
           <img
-            src="./images/plus.svg"
+            src="<%=require('./images/plus.svg')%>"
             alt="Добавить"
             class="profile__plus-image"
           />
@@ -82,7 +86,7 @@
         </form>
         <button type="button" class="popup__btn-close">
           <img
-            src="./images/close_icon.svg"
+            src="<%=require('./images/close_icon.svg')%>"
             alt="Закрыть"
             class="popup__cross-image"
           />
@@ -120,7 +124,7 @@
         </form>
         <button type="button" class="popup__btn-close">
           <img
-            src="./images/close_icon.svg"
+            src="<%=require('./images/close_icon.svg')%>"
             alt="Закрыть"
             class="popup__cross-image"
           />
@@ -142,7 +146,7 @@
 
         <button type="button" class="popup__btn-close">
           <img
-            src="./images/close_icon.svg"
+            src="<%=require('./images/close_icon.svg')%>"
             alt="Закрыть"
             class="popup__cross-image"
           />
@@ -167,14 +171,13 @@
           ></button>
         </div>
         <img
-          src="./images/Trash.svg"
+          src="<%=require('./images/Trash.svg')%>"
           alt="Удалить"
           class="element__delete"
           data-trap="deleteButtonHandler"
         />
       </div>
     </template>
-    <script type="module" src="./scripts/index.js"></script>
-    <script type="module" src="./scripts/validate.js"></script>
+    <!-- <script type="module" src="./scripts/index.js"></script> -->
   </body>
 </html>

@@ -1,3 +1,5 @@
+import "./../pages/index.css"; // добавляем импорт главного файла стилей
+
 import {
   //constants
   popupProfileInput,

@@ -1,5 +1,4 @@
-// закрытие popup по клику на overlay
-import { toggleButtonState } from "./validate.js";
+import { toggleButtonState, hideInputError } from "./validate.js";
 
 const profileMemberName = document.querySelector(".profile__member-name");
 const profileMemberOccupation = document.querySelector(".profile__lower-text");
@@ -16,6 +15,15 @@ const inputsAboutProfilePopup = popupInputForm.querySelector(
 );
 
 export const popupNewPlaceInput = document.querySelector(".popup-new-place");
+export const popupNewPlaceForm = popupNewPlaceInput.querySelector(
+  ".popup__userdata-input"
+);
+export const inputsPlaceNameNewPlacePopup = popupNewPlaceForm.querySelector(
+  'input[name = "place_name"]'
+);
+export const inputsPictureLinkNewPlacePopup = popupNewPlaceForm.querySelector(
+  'input[name = "picture_link"]'
+);
 
 export const popupBigPicture = document.querySelector(".popup-big-picture");
 const popupBigPictureImage = popupBigPicture.querySelector(".popup__picture");
@@ -40,12 +48,12 @@ export function openProfilePopup() {
   );
   openPopup(popupProfileInput);
 }
-// openProfilePopup, closeProfilePopup, saveProfileData, openNewPlacePopup, closeNewPlacePopup,
-// addNewPlaceCard, closeBigPicturePopup, openPictureFullView, overlayClickHandler
 
 export function closeProfilePopup() {
   inputsFullNameProfilePopup.value = "";
   inputsAboutProfilePopup.value = "";
+  hideInputError(popupProfileInput, inputsFullNameProfilePopup);
+  hideInputError(popupProfileInput, inputsAboutProfilePopup);
   closePopup(popupProfileInput);
 }
 
@@ -65,6 +73,10 @@ export function openNewPlacePopup() {
 }
 
 export function closeNewPlacePopup() {
+  inputsPlaceNameNewPlacePopup.value = "";
+  inputsPictureLinkNewPlacePopup.value = "";
+  hideInputError(popupNewPlaceInput, inputsPlaceNameNewPlacePopup);
+  hideInputError(popupNewPlaceInput, inputsPictureLinkNewPlacePopup);
   closePopup(popupNewPlaceInput);
 }
 
@@ -81,8 +93,6 @@ export function openPictureFullView(clickedPicture) {
 
 export function overlayClickHandler(event, popupName, callBackFunction) {
   let target = event.target;
-  console.log("target: ", target);
-  console.log("таргет или: ", target.closest(".popup__btn-save"));
 
   if (
     target.closest(".popup__container") ||

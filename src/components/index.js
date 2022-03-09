@@ -86,13 +86,5 @@ popupCloseBigPictureButton.addEventListener("click", closeBigPicturePopup);
 popupBigPicture.addEventListener("mousedown", (event) =>
   overlayClickHandler(event, popupBigPicture, closeBigPicturePopup)
 );
-// слушатель на клавишу Escape для закрытия всех попапов
-// document.addEventListener("keydown", function (event) {
-//   if (event.code == "Escape") {
-//     closeProfilePopup();
-//     closeNewPlacePopup();
-//     closeBigPicturePopup();
-//   }
-// });
-// запуск валидации форм по input
+
 enableValidation(config);

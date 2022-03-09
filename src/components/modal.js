@@ -13,6 +13,9 @@ const inputsFullNameProfilePopup = popupInputForm.querySelector(
 const inputsAboutProfilePopup = popupInputForm.querySelector(
   'input[name="about"]'
 );
+const profileInputs = popupProfileInput.querySelectorAll(".popup__input-field");
+const profileSubmitButton =
+  popupProfileInput.querySelector('[type = "submit"]');
 
 export const popupNewPlaceInput = document.querySelector(".popup-new-place");
 export const popupNewPlaceForm = popupNewPlaceInput.querySelector(
@@ -24,6 +27,9 @@ export const inputsPlaceNameNewPlacePopup = popupNewPlaceForm.querySelector(
 export const inputsPictureLinkNewPlacePopup = popupNewPlaceForm.querySelector(
   'input[name = "picture_link"]'
 );
+
+const placeInputs = popupNewPlaceInput.querySelectorAll(".popup__input-field");
+const placeSubmitButton = popupNewPlaceInput.querySelector('[type = "submit"]');
 
 export const popupBigPicture = document.querySelector(".popup-big-picture");
 const popupBigPictureImage = popupBigPicture.querySelector(".popup__picture");
@@ -44,10 +50,7 @@ export function closePopup(popup) {
 export function openProfilePopup() {
   inputsFullNameProfilePopup.value = profileMemberName.textContent;
   inputsAboutProfilePopup.value = profileMemberOccupation.textContent;
-  toggleButtonState(
-    Array.from(popupProfileInput.querySelectorAll(".popup__input-field")),
-    popupProfileInput.querySelector('[type = "submit"]')
-  );
+  toggleButtonState(Array.from(profileInputs), profileSubmitButton);
   openPopup(popupProfileInput);
 }
 
@@ -67,10 +70,7 @@ export function saveProfileData(evt) {
 }
 
 export function openNewPlacePopup() {
-  toggleButtonState(
-    Array.from(popupNewPlaceInput.querySelectorAll(".popup__input-field")),
-    popupNewPlaceInput.querySelector('[type = "submit"]')
-  );
+  toggleButtonState(Array.from(placeInputs), placeSubmitButton);
   openPopup(popupNewPlaceInput);
 }
 

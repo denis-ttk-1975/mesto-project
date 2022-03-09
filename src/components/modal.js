@@ -33,10 +33,12 @@ const popupBigPictureFigcaption = popupBigPicture.querySelector(
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
+  document.addEventListener("keydown", closeByEscape);
 }
 
 export function closePopup(popup) {
   popup.classList.remove("popup_opened");
+  document.removeEventListener("keydown", closeByEscape);
 }
 
 export function openProfilePopup() {
@@ -97,10 +99,23 @@ export function overlayClickHandler(event, popupName, callBackFunction) {
   if (
     target.closest(".popup__container") ||
     target.closest(".popup__btn-save") ||
-    target.closest(".popup__btn-close")
+    target.closest(".popup__btn-close") ||
+    target.closest(".popup__figure-container")
   ) {
     event.stopPropagation();
   } else {
     callBackFunction(popupName);
+  }
+}
+// функция для закрытия всех попапов по клавише Escape
+// отклонился от рекомендации ревьювера вычислять открытый попап и закрывать именно его,
+// так как разные попапы закрываются по разному (с очисткой содержимого или без)
+// прямая рекомендация вызывает необходимость рефакторинга всех функций закрытия попапов
+
+function closeByEscape(event) {
+  if (event.key === "Escape") {
+    closeProfilePopup();
+    closeNewPlacePopup();
+    closeBigPicturePopup();
   }
 }

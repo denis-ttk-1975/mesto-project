@@ -87,12 +87,12 @@ popupBigPicture.addEventListener("click", (event) =>
   overlayClickHandler(event, popupBigPicture, closeBigPicturePopup)
 );
 // слушатель на клавишу Escape для закрытия всех попапов
-document.addEventListener("keydown", function (event) {
-  if (event.code == "Escape") {
-    closeProfilePopup();
-    closeNewPlacePopup();
-    closeBigPicturePopup();
-  }
-});
+// document.addEventListener("keydown", function (event) {
+//   if (event.code == "Escape") {
+//     closeProfilePopup();
+//     closeNewPlacePopup();
+//     closeBigPicturePopup();
+//   }
+// });
 // запуск валидации форм по input
 enableValidation(config);

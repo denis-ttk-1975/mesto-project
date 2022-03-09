@@ -11,14 +11,13 @@ import {
 
 function createCard(source, title) {
   const newCardElement = cardTemplate.querySelector(".element").cloneNode(true);
-  newCardElement.querySelector(".element__mask").src = source;
-  newCardElement.querySelector(".element__mask").alt = title;
+  const cardImage = newCardElement.querySelector(".element__mask");
+  cardImage.src = source;
+  cardImage.alt = title;
   newCardElement.querySelector(".element__card-name").textContent = title;
-  newCardElement
-    .querySelector(".element__mask")
-    .addEventListener("click", function (evt) {
-      openPictureFullView(evt.target);
-    });
+  cardImage.addEventListener("click", function (evt) {
+    openPictureFullView(evt.target);
+  });
   newCardElement
     .querySelector(".element__like-btn")
     .addEventListener("click", function (evt) {

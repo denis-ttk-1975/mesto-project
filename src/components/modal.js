@@ -50,15 +50,17 @@ export function closePopup(popup) {
 export function openProfilePopup() {
   inputsFullNameProfilePopup.value = profileMemberName.textContent;
   inputsAboutProfilePopup.value = profileMemberOccupation.textContent;
+  hideInputError(popupProfileInput, inputsFullNameProfilePopup);
+  hideInputError(popupProfileInput, inputsAboutProfilePopup);
   toggleButtonState(Array.from(profileInputs), profileSubmitButton);
   openPopup(popupProfileInput);
 }
 
 export function closeProfilePopup() {
-  inputsFullNameProfilePopup.value = "";
-  inputsAboutProfilePopup.value = "";
-  hideInputError(popupProfileInput, inputsFullNameProfilePopup);
-  hideInputError(popupProfileInput, inputsAboutProfilePopup);
+  // inputsFullNameProfilePopup.value = "";
+  // inputsAboutProfilePopup.value = "";
+  // hideInputError(popupProfileInput, inputsFullNameProfilePopup);
+  // hideInputError(popupProfileInput, inputsAboutProfilePopup);
   closePopup(popupProfileInput);
 }
 
@@ -70,15 +72,19 @@ export function saveProfileData(evt) {
 }
 
 export function openNewPlacePopup() {
+  hideInputError(popupNewPlaceInput, inputsPlaceNameNewPlacePopup);
+  hideInputError(popupNewPlaceInput, inputsPictureLinkNewPlacePopup);
+  inputsPlaceNameNewPlacePopup.value = "";
+  inputsPictureLinkNewPlacePopup.value = "";
   toggleButtonState(Array.from(placeInputs), placeSubmitButton);
   openPopup(popupNewPlaceInput);
 }
 
 export function closeNewPlacePopup() {
-  inputsPlaceNameNewPlacePopup.value = "";
-  inputsPictureLinkNewPlacePopup.value = "";
-  hideInputError(popupNewPlaceInput, inputsPlaceNameNewPlacePopup);
-  hideInputError(popupNewPlaceInput, inputsPictureLinkNewPlacePopup);
+  // inputsPlaceNameNewPlacePopup.value = "";
+  // inputsPictureLinkNewPlacePopup.value = "";
+  // hideInputError(popupNewPlaceInput, inputsPlaceNameNewPlacePopup);
+  // hideInputError(popupNewPlaceInput, inputsPictureLinkNewPlacePopup);
   closePopup(popupNewPlaceInput);
 }
 

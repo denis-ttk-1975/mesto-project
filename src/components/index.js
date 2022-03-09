@@ -15,9 +15,19 @@ import {
   overlayClickHandler,
 } from "./modal.js";
 
-import { config, enableValidation } from "./validate.js";
+import { enableValidation } from "./validate.js";
 
 import { addNewPlaceCard, createElementsArea } from "./card.js";
+
+// создаем объект с набором настроек для валидации
+export const config = {
+  formSelector: ".popup__userdata-input",
+  inputSelector: ".popup__input-field",
+  submitButtonSelector: '[type = "submit"]',
+  inactiveButtonClass: "popup__btn-save_inactive",
+  inputErrorClass: "popup__input-field_error",
+  errorClass: "popup__input-error_active",
+};
 
 const profileEditButton = document.querySelector(".profile__edit-button");
 const profileAddPlaceButton = document.querySelector(".profile__add");
@@ -68,14 +78,16 @@ createElementsArea(initialCards);
 
 // навешивание слушателей на попапы
 
-profileEditButton.addEventListener("click", openProfilePopup);
+profileEditButton.addEventListener("click", () => openProfilePopup(config));
 popupCloseProfileInputButton.addEventListener("click", closeProfilePopup);
 profileInputForm.addEventListener("submit", saveProfileData);
 popupProfileInput.addEventListener("mousedown", (event) =>
   overlayClickHandler(event, popupProfileInput, closeProfilePopup)
 );
 
-profileAddPlaceButton.addEventListener("click", openNewPlacePopup);
+profileAddPlaceButton.addEventListener("click", () =>
+  openNewPlacePopup(config)
+);
 popupCloseNewPlaceButton.addEventListener("click", closeNewPlacePopup);
 newPlaceInputForm.addEventListener("submit", addNewPlaceCard);
 popupNewPlaceInput.addEventListener("mousedown", (event) =>

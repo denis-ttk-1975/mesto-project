@@ -47,12 +47,12 @@ export function closePopup(popup) {
   document.removeEventListener("keydown", closeByEscape);
 }
 
-export function openProfilePopup() {
+export function openProfilePopup(config) {
   inputsFullNameProfilePopup.value = profileMemberName.textContent;
   inputsAboutProfilePopup.value = profileMemberOccupation.textContent;
-  hideInputError(popupProfileInput, inputsFullNameProfilePopup);
-  hideInputError(popupProfileInput, inputsAboutProfilePopup);
-  toggleButtonState(Array.from(profileInputs), profileSubmitButton);
+  hideInputError(popupProfileInput, inputsFullNameProfilePopup, config);
+  hideInputError(popupProfileInput, inputsAboutProfilePopup, config);
+  toggleButtonState(Array.from(profileInputs), profileSubmitButton, config);
   openPopup(popupProfileInput);
 }
 
@@ -71,12 +71,12 @@ export function saveProfileData(evt) {
   closePopup(popupProfileInput);
 }
 
-export function openNewPlacePopup() {
-  hideInputError(popupNewPlaceInput, inputsPlaceNameNewPlacePopup);
-  hideInputError(popupNewPlaceInput, inputsPictureLinkNewPlacePopup);
+export function openNewPlacePopup(config) {
+  hideInputError(popupNewPlaceInput, inputsPlaceNameNewPlacePopup, config);
+  hideInputError(popupNewPlaceInput, inputsPictureLinkNewPlacePopup, config);
   inputsPlaceNameNewPlacePopup.value = "";
   inputsPictureLinkNewPlacePopup.value = "";
-  toggleButtonState(Array.from(placeInputs), placeSubmitButton);
+  toggleButtonState(Array.from(placeInputs), placeSubmitButton, config);
   openPopup(popupNewPlaceInput);
 }
 

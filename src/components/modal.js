@@ -94,7 +94,7 @@ export function openPictureFullView(clickedPicture) {
 }
 
 export function overlayClickHandler(event, popupName, callBackFunction) {
-  let target = event.target;
+  const target = event.target;
 
   if (
     target.closest(".popup__container") ||

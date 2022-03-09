@@ -71,19 +71,19 @@ createElementsArea(initialCards);
 profileEditButton.addEventListener("click", openProfilePopup);
 popupCloseProfileInputButton.addEventListener("click", closeProfilePopup);
 profileInputForm.addEventListener("submit", saveProfileData);
-popupProfileInput.addEventListener("click", (event) =>
+popupProfileInput.addEventListener("mousedown", (event) =>
   overlayClickHandler(event, popupProfileInput, closeProfilePopup)
 );
 
 profileAddPlaceButton.addEventListener("click", openNewPlacePopup);
 popupCloseNewPlaceButton.addEventListener("click", closeNewPlacePopup);
 newPlaceInputForm.addEventListener("submit", addNewPlaceCard);
-popupNewPlaceInput.addEventListener("click", (event) =>
+popupNewPlaceInput.addEventListener("mousedown", (event) =>
   overlayClickHandler(event, popupNewPlaceInput, closeNewPlacePopup)
 );
 
 popupCloseBigPictureButton.addEventListener("click", closeBigPicturePopup);
-popupBigPicture.addEventListener("click", (event) =>
+popupBigPicture.addEventListener("mousedown", (event) =>
   overlayClickHandler(event, popupBigPicture, closeBigPicturePopup)
 );
 // слушатель на клавишу Escape для закрытия всех попапов

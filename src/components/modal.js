@@ -114,14 +114,12 @@ export function overlayClickHandler(event, popupName, callBackFunction) {
   }
 }
 // функция для закрытия всех попапов по клавише Escape
-// отклонился от рекомендации ревьювера вычислять открытый попап и закрывать именно его,
-// так как разные попапы закрываются по разному (с очисткой содержимого или без)
-// прямая рекомендация вызывает необходимость рефакторинга всех функций закрытия попапов
 
 function closeByEscape(event) {
   if (event.key === "Escape") {
-    closeProfilePopup();
-    closeNewPlacePopup();
-    closeBigPicturePopup();
+    closePopup(document.querySelector(".popup_opened"));
+    // closeProfilePopup();
+    // closeNewPlacePopup();
+    // closeBigPicturePopup();
   }
 }

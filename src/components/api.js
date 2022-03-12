@@ -23,6 +23,15 @@ const configPatchAvatar = {
   },
 };
 
+const configAddCard = {
+  method: "POST",
+  baseUrl: "https://nomoreparties.co/v1/plus-cohort7/cards",
+  headers: {
+    authorization: "62256703-4f1c-4e78-bfd6-410f01323be3",
+    "Content-Type": "application/json",
+  },
+};
+
 export const getUserProfile = () => {
   return fetch(configAvatar.baseUrl, { headers: configAvatar.headers }).then(
     (res) => res.json()
@@ -44,5 +53,15 @@ export const setUserProfile = (name, about) => {
       about: about,
     }),
   });
-  //.then((res) => res.json());
+};
+
+export const setNewCard = (name, link) => {
+  return fetch(configAddCard.baseUrl, {
+    method: configAddCard.method,
+    headers: configAddCard.headers,
+    body: JSON.stringify({
+      name: name,
+      link: link,
+    }),
+  });
 };

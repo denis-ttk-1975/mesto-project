@@ -9,6 +9,8 @@ import {
   inputsPictureLinkNewPlacePopup,
 } from "./modal.js";
 
+import { setNewCard, getCardsArray } from "./api.js";
+
 function createCard(source, title) {
   const newCardElement = cardTemplate.querySelector(".element").cloneNode(true);
   const cardImage = newCardElement.querySelector(".element__mask");
@@ -35,11 +37,21 @@ function createCard(source, title) {
 export function addNewPlaceCard(evt) {
   evt.preventDefault();
 
-  const newElement = createCard(
-    inputsPictureLinkNewPlacePopup.value,
-    inputsPlaceNameNewPlacePopup.value
-  );
-  elementsArea.prepend(newElement);
+  // const newElement = createCard(
+  //   inputsPictureLinkNewPlacePopup.value,
+  //   inputsPlaceNameNewPlacePopup.value
+  // );
+  // elementsArea.prepend(newElement);
+
+  setNewCard(
+    inputsPlaceNameNewPlacePopup.value,
+    inputsPictureLinkNewPlacePopup.value
+  ).then((res) => {
+    if (res.ok) {
+      getCardsArray().then((res) => createElementsArea(res));
+    }
+  });
+
   inputsPlaceNameNewPlacePopup.value = "";
   inputsPictureLinkNewPlacePopup.value = "";
   closePopup(popupNewPlaceInput);

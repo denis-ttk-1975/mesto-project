@@ -43,5 +43,6 @@ export const setUserProfile = (name, about) => {
       name: name,
       about: about,
     }),
-  }).then((res) => res.json());
+  });
+  //.then((res) => res.json());
 };

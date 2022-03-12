@@ -2,6 +2,8 @@ import { toggleButtonState, hideInputError } from "./validate.js";
 
 import { setUserProfile } from "./api.js";
 
+import { summonProfile } from "./index.js";
+
 const profileMemberName = document.querySelector(".profile__member-name");
 const profileMemberOccupation = document.querySelector(".profile__lower-text");
 export const popupProfileInput = document.querySelector(".popup-profile-input");
@@ -68,8 +70,15 @@ export function closeProfilePopup() {
 
 export function saveProfileData(evt) {
   evt.preventDefault();
-  profileMemberName.textContent = inputsFullNameProfilePopup.value;
-  profileMemberOccupation.textContent = inputsAboutProfilePopup.value;
+  const newName = inputsFullNameProfilePopup.value;
+  const newAbout = inputsAboutProfilePopup.value;
+  setUserProfile(newName, newAbout).then((res) => {
+    if (res.ok) {
+      summonProfile();
+    } else {
+      return Promise.reject(res.status);
+    }
+  });
   closePopup(popupProfileInput);
 }
 

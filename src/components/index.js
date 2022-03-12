@@ -104,19 +104,22 @@ popupBigPicture.addEventListener("mousedown", (event) =>
 
 enableValidation(config);
 
-let userProfileAvatar = document.querySelector(".profile__avatar");
-let userProfileName = document.querySelector(".profile__member-name");
-let userProfileAbout = document.querySelector(".profile__lower-text");
+export function summonProfile() {
+  const userProfileAvatar = document.querySelector(".profile__avatar");
+  const userProfileName = document.querySelector(".profile__member-name");
+  const userProfileAbout = document.querySelector(".profile__lower-text");
 
-function getCartData() {
-  getUserProfile().then((res) => {
-    userProfileName.textContent = res.name;
-    userProfileAbout.textContent = res.about;
-    userProfileAvatar.src = res.avatar;
-  });
+  function getCartData() {
+    getUserProfile().then((res) => {
+      userProfileName.textContent = res.name;
+      userProfileAbout.textContent = res.about;
+      userProfileAvatar.src = res.avatar;
+    });
+  }
+  getCartData();
 }
 
-getCartData();
+summonProfile();
 
 // profile__avatar"
 //           />

@@ -76,7 +76,11 @@ const popupCloseBigPictureButton =
 // ];
 
 //!!!Создание поля карточек!!!
-getCardsArray().then((res) => createElementsArea(res));
+getCardsArray().then((res) => {
+  console.log(res);
+  createElementsArea(res);
+});
+
 // createElementsArea(initialCards);
 
 // навешивание слушателей на попапы

@@ -11,12 +11,13 @@ import {
 
 import { setNewCard, getCardsArray } from "./api.js";
 
-function createCard(source, title) {
+function createCard(source, title, rating) {
   const newCardElement = cardTemplate.querySelector(".element").cloneNode(true);
   const cardImage = newCardElement.querySelector(".element__mask");
   cardImage.src = source;
   cardImage.alt = title;
   newCardElement.querySelector(".element__card-name").textContent = title;
+  newCardElement.querySelector(".element__rating").textContent = rating;
   cardImage.addEventListener("click", function (evt) {
     openPictureFullView(evt.target);
   });
@@ -58,8 +59,9 @@ export function addNewPlaceCard(evt) {
 }
 
 export function createElementsArea(array) {
+  elementsArea.innerHTML = "";
   array.forEach(function (item) {
-    const newElement = createCard(item.link, item.name);
+    const newElement = createCard(item.link, item.name, item.likes.length);
     elementsArea.prepend(newElement);
   });
 }

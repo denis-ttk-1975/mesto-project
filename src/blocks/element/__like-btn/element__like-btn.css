@@ -10,6 +10,7 @@
   background-size: contain;
   background-repeat: no-repeat;
   cursor: pointer;
+  /* overflow: visible; */
 }
 
 .element__like-btn:hover {

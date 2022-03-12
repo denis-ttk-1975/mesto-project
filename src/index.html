@@ -164,11 +164,14 @@
         />
         <div class="element__text-wrap">
           <h2 class="element__card-name"></h2>
-          <button
-            type="button"
-            class="element__like-btn"
-            data-trap="likeButtonHandler"
-          ></button>
+          <div class="element__like-zone">
+            <button
+              type="button"
+              class="element__like-btn"
+              data-trap="likeButtonHandler"
+            ></button>
+            <p class="element__rating">0</p>
+          </div>
         </div>
         <img
           src="<%=require('./images/Trash.svg')%>"

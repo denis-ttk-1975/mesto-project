@@ -1,5 +1,7 @@
 import { toggleButtonState, hideInputError } from "./validate.js";
 
+import { setUserProfile } from "./api.js";
+
 const profileMemberName = document.querySelector(".profile__member-name");
 const profileMemberOccupation = document.querySelector(".profile__lower-text");
 export const popupProfileInput = document.querySelector(".popup-profile-input");

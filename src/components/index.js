@@ -19,6 +19,8 @@ import { enableValidation } from "./validate.js";
 
 import { addNewPlaceCard, createElementsArea } from "./card.js";
 
+import { getUserProfile, getCardsArray } from "./api.js";
+
 // создаем объект с набором настроек для валидации
 export const config = {
   formSelector: ".popup__userdata-input",
@@ -46,35 +48,36 @@ const popupCloseBigPictureButton =
 
 // const popupWindows = document.querySelectorAll(".popup");
 
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
+// const initialCards = [
+//   {
+//     name: "Архыз",
+//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
+//   },
+//   {
+//     name: "Челябинская область",
+//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
+//   },
+//   {
+//     name: "Иваново",
+//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
+//   },
+//   {
+//     name: "Камчатка",
+//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
+//   },
+//   {
+//     name: "Холмогорский район",
+//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
+//   },
+//   {
+//     name: "Байкал",
+//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+//   },
+// ];
 
 //!!!Создание поля карточек!!!
-createElementsArea(initialCards);
+getCardsArray().then((res) => createElementsArea(res));
+// createElementsArea(initialCards);
 
 // навешивание слушателей на попапы
 
@@ -100,3 +103,36 @@ popupBigPicture.addEventListener("mousedown", (event) =>
 );
 
 enableValidation(config);
+
+let userProfileAvatar = document.querySelector(".profile__avatar");
+let userProfileName = document.querySelector(".profile__member-name");
+let userProfileAbout = document.querySelector(".profile__lower-text");
+
+function getCartData() {
+  getUserProfile().then((res) => {
+    userProfileName.textContent = res.name;
+    userProfileAbout.textContent = res.about;
+    userProfileAvatar.src = res.avatar;
+  });
+}
+
+getCartData();
+
+// profile__avatar"
+//           />
+//           <div class="profile__text-block">
+//             <div class="profile__upper-text">
+//               <h1 class="profile__member-name">Жак-Ив Кусто</h1>
+//               <button type="button" class="profile__edit-button">
+//                 <img
+//                   src="<%=require('./images/edit_button.svg')%>"
+//                   alt="Клавиша редактирования"
+//                   class="profile__image-edit-button"
+//                 />
+//               </button>
+//             </div>
+//             <p class="profile__lower-text">Исследователь океана</p
+
+// console.log(userProfile);
+
+// console.log("profileCartData:", profileCartData);

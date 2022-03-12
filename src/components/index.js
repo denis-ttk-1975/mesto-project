@@ -31,6 +31,9 @@ export const config = {
   errorClass: "popup__input-error_active",
 };
 
+// не нравится как заявлена важная константа - ID владельца страницы. Подумай
+export let userID;
+
 const profileEditButton = document.querySelector(".profile__edit-button");
 const profileAddPlaceButton = document.querySelector(".profile__add");
 
@@ -115,9 +118,12 @@ export function summonProfile() {
 
   function getCartData() {
     getUserProfile().then((res) => {
+      console.log(res);
       userProfileName.textContent = res.name;
       userProfileAbout.textContent = res.about;
       userProfileAvatar.src = res.avatar;
+      userID = res._id;
+      console.log(userID);
     });
   }
   getCartData();

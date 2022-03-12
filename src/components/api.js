@@ -32,6 +32,15 @@ const configAddCard = {
   },
 };
 
+const configDeleteCard = {
+  method: "DELETE",
+  baseUrl: "https://nomoreparties.co/v1/plus-cohort7/cards/",
+  headers: {
+    authorization: "62256703-4f1c-4e78-bfd6-410f01323be3",
+    "Content-Type": "application/json",
+  },
+};
+
 export const getUserProfile = () => {
   return fetch(configAvatar.baseUrl, { headers: configAvatar.headers }).then(
     (res) => res.json()
@@ -63,5 +72,12 @@ export const setNewCard = (name, link) => {
       name: name,
       link: link,
     }),
+  });
+};
+
+export const deleteCard = (cardId) => {
+  return fetch(configDeleteCard.baseUrl + cardId, {
+    method: configDeleteCard.method,
+    headers: configDeleteCard.headers,
   });
 };

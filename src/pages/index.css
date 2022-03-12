@@ -28,6 +28,7 @@
 @import url(./../blocks/element/__card-name/element__card-name.css);
 @import url(./../blocks/element/__like-btn/element__like-btn.css);
 @import url(./../blocks/element/__delete/element__delete.css);
+@import url(./../blocks/element/__delete/_hidden/element__delete_hidden.css);
 @import url(./../blocks/element/__like-btn/_liked/element__like-btn_liked.css);
 @import url(./../blocks/element/__like-zone/element__like-zone.css);
 @import url(./../blocks/element/__rating/element__rating.css);

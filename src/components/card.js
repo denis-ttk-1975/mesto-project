@@ -36,15 +36,19 @@ function likeButtonHandler(evt) {
     deleteLike(cardID)
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         likeCounter.textContent = res.likes.length;
+      })
+      .catch((err) => {
+        console.log(err);
       });
   } else {
     setLike(cardID)
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         likeCounter.textContent = res.likes.length;
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }
 
@@ -87,11 +91,19 @@ function createCard(source, title, rating, ownerID, cardID, likes) {
     .querySelector(".element__delete")
     .addEventListener("click", function (evt) {
       const cardId = evt.target.closest(".element").dataset.cardId;
-      deleteCard(cardId).then((res) => {
-        if (res.ok) {
-          getCardsArray().then((res) => createElementsArea(res));
-        }
-      });
+      deleteCard(cardId)
+        .then((res) => {
+          if (res.ok) {
+            getCardsArray()
+              .then((res) => createElementsArea(res))
+              .catch((err) => {
+                console.log(err);
+              });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     });
   // возвращаем готовую карточку
   return newCardElement;
@@ -111,57 +123,63 @@ export function createElementsArea(array) {
     elementsArea.prepend(newElement);
   });
 }
-//! функция загрузки массива с данными карточек из сервера и формирования из него поля карточек
+//! функция выгрузки на сервер данных о новой карточке и далее загрузки массива с данными карточек из сервера
+//! и формирования из него нового поля карточек
 export function addNewPlaceCard(evt) {
   evt.preventDefault();
-  document.querySelector(".popup__btn-save_new-place-input").textContent =
+  document.querySelector(".popup__btn-save_new-place-input").innerHTML =
     "Сохранение...";
-
-  for (let i = 1; i < 1000000; i++) {
-    console.log(i);
-  }
 
   setNewCard(
     inputsPlaceNameNewPlacePopup.value,
     inputsPictureLinkNewPlacePopup.value
-  ).then((res) => {
-    if (res.ok) {
-      getCardsArray().then((res) => createElementsArea(res));
-    }
-  });
+  )
+    .then((res) => {
+      if (res.ok) {
+        getCardsArray()
+          .then((res) => createElementsArea(res))
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      document.querySelector(".popup__btn-save_new-place-input").innerHTML =
+        "Создать";
+    });
 
-  inputsPlaceNameNewPlacePopup.value = "";
-  inputsPictureLinkNewPlacePopup.value = "";
   closePopup(popupNewPlaceInput);
-  document.querySelector(".popup__btn-save_new-place-input").textContent =
-    "Создать";
+  // document.querySelector(".popup__btn-save_new-place-input").innerHTML =
+  //   "Создать";
 }
 //! функция загрузки картинки нового аватара
 export function addNewAvatar(evt) {
   evt.preventDefault();
 
-  console.log(
-    document.querySelector(".popup__btn-save_avatar-input").innerHTML
-  );
-
-  document.getElementsByClassName("popup__btn-save_avatar-input").innerHTML =
+  document.querySelector(".popup__btn-save_avatar-input").innerHTML =
     "Сохранение...";
-
-  for (let i = 1; i < 1000000; i++) {
-    console.log(i);
-  }
 
   const url = inputsAvatarLinkNewAvatarPopup.value;
 
   loadNewAvatar(url)
     .then((res) => res.json())
     .then((res) => {
-      console.log(res);
-      summonProfile();
+      document.querySelector(".profile__member-name").textContent = res.name;
+      document.querySelector(".profile__lower-text").textContent = res.about;
+      document.querySelector(".profile__avatar").src = res.avatar;
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      document.querySelector(".popup__btn-save_avatar-input").innerHTML =
+        "Сохранить";
     });
 
-  inputsAvatarLinkNewAvatarPopup.value = "";
   closePopup(popupNewAvatarInput);
-  document.querySelector(".popup__btn-save_avatar-input").innerHTML =
-    "Сохранить";
+  // document.querySelector(".popup__btn-save_avatar-input").innerHTML =
+  //   "Сохранить";
 }

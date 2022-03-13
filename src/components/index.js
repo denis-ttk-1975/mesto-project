@@ -34,19 +34,19 @@ export const config = {
   errorClass: "popup__input-error_active",
 };
 
-// не нравится как заявлена важная константа - ID владельца страницы. Подумай
+//! не нравится как заявлена важная константа - ID владельца страницы. Подумай
 export let userID;
-
+// получаем кнопки для запуска попап
 const profileEditButton = document.querySelector(".profile__edit-button");
 const profileAddPlaceButton = document.querySelector(".profile__add");
 const profileNewAvatarButton = document.querySelector(
   ".profile__overlay-avatar"
 );
-
+// получаем формы для запуска событий submit
 const profileInputForm = document.querySelector('form[name="user-data"]');
 const newPlaceInputForm = document.querySelector('form[name="new-place"]');
 const newAvatarInputForm = document.querySelector('form[name="new-avatar"]');
-
+// получаем кнопки закрытия форм для запуска закрытия форм
 const popupCloseProfileInputButton =
   popupProfileInput.querySelector(".popup__btn-close");
 
@@ -59,15 +59,14 @@ const popupCloseBigPictureButton =
 const popupCloseNewAvatarButton =
   popupNewAvatarInput.querySelector(".popup__btn-close");
 
-// const popupWindows = document.querySelectorAll(".popup");
-
-//!!!Создание поля карточек!!!
-getCardsArray().then((res) => {
-  console.log(res);
-  createElementsArea(res);
-});
-
-// createElementsArea(initialCards);
+//!!! Создание поля карточек
+getCardsArray()
+  .then((res) => {
+    createElementsArea(res);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 // навешивание слушателей на попапы
 
@@ -101,7 +100,11 @@ popupNewAvatarInput.addEventListener("mousedown", (event) =>
   overlayClickHandler(event, popupNewAvatarInput, closeNewAvatarPopup)
 );
 
+//! запуск валидации на все формы
+
 enableValidation(config);
+
+// создание функции скачивания данных и генерирования блок profile с данными и аватаром текущего пользователя
 
 export function summonProfile() {
   const userProfileAvatar = document.querySelector(".profile__avatar");
@@ -109,16 +112,20 @@ export function summonProfile() {
   const userProfileAbout = document.querySelector(".profile__lower-text");
 
   function getCartData() {
-    getUserProfile().then((res) => {
-      console.log(res);
-      userProfileName.textContent = res.name;
-      userProfileAbout.textContent = res.about;
-      userProfileAvatar.src = res.avatar;
-      userID = res._id;
-      console.log(userID);
-    });
+    getUserProfile()
+      .then((res) => {
+        userProfileName.textContent = res.name;
+        userProfileAbout.textContent = res.about;
+        userProfileAvatar.src = res.avatar;
+        userID = res._id;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   getCartData();
 }
+
+//!!! запуск функции скачивания данных и генерирования блок profile с данными и аватаром текущего пользователя
 
 summonProfile();

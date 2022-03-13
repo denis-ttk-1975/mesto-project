@@ -97,22 +97,25 @@ export function closeProfilePopup() {
 
 export function saveProfileData(evt) {
   evt.preventDefault();
-  profileSubmitButton.textContent = "Сохранение...";
+  profileSubmitButton.innerHTML = "Сохранение...";
 
   const newName = inputsFullNameProfilePopup.value;
   const newAbout = inputsAboutProfilePopup.value;
-  setUserProfile(newName, newAbout).then((res) => {
-    if (res.ok) {
-      summonProfile();
-    } else {
-      return Promise.reject(res.status);
-    }
-  });
-  for (let i = 1; i < 1000000; i++) {
-    console.log(i);
-  }
+  setUserProfile(newName, newAbout)
+    .then((res) => {
+      if (res.ok) {
+        summonProfile();
+      } else {
+        return Promise.reject(res.status);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => (profileSubmitButton.innerHTML = "Сохранить"));
+
   closePopup(popupProfileInput);
-  profileSubmitButton.textContent = "Сохранить";
+  // profileSubmitButton.innerHTML = "Сохранить";
 }
 
 // функции для попапа NewPlace
@@ -173,7 +176,7 @@ export function overlayClickHandler(event, popupName, callBackFunction) {
     callBackFunction(popupName);
   }
 }
-// функция для закрытия всех попапов по клавише Escape
+// функция для закрытия текущего открытого попапа по клавише Escape
 
 function closeByEscape(event) {
   if (event.key === "Escape") {

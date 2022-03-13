@@ -97,6 +97,8 @@ export function closeProfilePopup() {
 
 export function saveProfileData(evt) {
   evt.preventDefault();
+  profileSubmitButton.textContent = "Сохранение...";
+
   const newName = inputsFullNameProfilePopup.value;
   const newAbout = inputsAboutProfilePopup.value;
   setUserProfile(newName, newAbout).then((res) => {
@@ -106,7 +108,11 @@ export function saveProfileData(evt) {
       return Promise.reject(res.status);
     }
   });
+  for (let i = 1; i < 1000000; i++) {
+    console.log(i);
+  }
   closePopup(popupProfileInput);
+  profileSubmitButton.textContent = "Сохранить";
 }
 
 // функции для попапа NewPlace

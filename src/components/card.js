@@ -114,6 +114,12 @@ export function createElementsArea(array) {
 //! функция загрузки массива с данными карточек из сервера и формирования из него поля карточек
 export function addNewPlaceCard(evt) {
   evt.preventDefault();
+  document.querySelector(".popup__btn-save_new-place-input").textContent =
+    "Сохранение...";
+
+  for (let i = 1; i < 1000000; i++) {
+    console.log(i);
+  }
 
   setNewCard(
     inputsPlaceNameNewPlacePopup.value,
@@ -127,12 +133,23 @@ export function addNewPlaceCard(evt) {
   inputsPlaceNameNewPlacePopup.value = "";
   inputsPictureLinkNewPlacePopup.value = "";
   closePopup(popupNewPlaceInput);
+  document.querySelector(".popup__btn-save_new-place-input").textContent =
+    "Создать";
 }
 //! функция загрузки картинки нового аватара
 export function addNewAvatar(evt) {
   evt.preventDefault();
 
-  console.log("Adding NewAvatar!!!");
+  console.log(
+    document.querySelector(".popup__btn-save_avatar-input").innerHTML
+  );
+
+  document.getElementsByClassName("popup__btn-save_avatar-input").innerHTML =
+    "Сохранение...";
+
+  for (let i = 1; i < 1000000; i++) {
+    console.log(i);
+  }
 
   const url = inputsAvatarLinkNewAvatarPopup.value;
 
@@ -145,4 +162,6 @@ export function addNewAvatar(evt) {
 
   inputsAvatarLinkNewAvatarPopup.value = "";
   closePopup(popupNewAvatarInput);
+  document.querySelector(".popup__btn-save_avatar-input").innerHTML =
+    "Сохранить";
 }

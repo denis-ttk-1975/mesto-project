@@ -17,17 +17,18 @@
     <main class="main">
       <section class="profile">
         <div class="profile__member-data">
-          <img
-            src="<%=require('./images/jacques-yves_cousteau.jpg')%>"
-            alt="Портрет"
-            class="profile__avatar"
-          />
+          <div class="profile__wrapper-avatar">
+            <img src="" alt="Портрет" class="profile__avatar" />
+            <!-- вставить <%=require('./images/jacques-yves_cousteau.jpg')%> в src изображения с классом class="profile__avatar" -->
+            <div class="profile__overlay-avatar"></div>
+          </div>
+
           <div class="profile__text-block">
             <div class="profile__upper-text">
               <h1 class="profile__member-name">Жак-Ив Кусто</h1>
               <button type="button" class="profile__edit-button">
                 <img
-                  src="<%=require('./images/edit_button.svg')%>"
+                  src="<%=require('./images/edit-pen.svg')%>"
                   alt="Клавиша редактирования"
                   class="profile__image-edit-button"
                 />
@@ -136,14 +137,45 @@
       <!-- popup_opened писать сюда -->
       <div class="popup__figure-container">
         <figure class="popup__picture-container">
-          <img
-            src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg"
-            alt="Архыз"
-            class="popup__picture"
-          />
+          <img src="" alt="" class="popup__picture" />
+          <!-- вставить https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg в src изображения с классом class="popup__picture" -->
+          <!-- вставить alt="Архыз" в alt изображения с классом class="popup__picture" -->
           <figcaption class="popup__picture-figcaption">Архыз</figcaption>
         </figure>
 
+        <button type="button" class="popup__btn-close">
+          <img
+            src="<%=require('./images/close_icon.svg')%>"
+            alt="Закрыть"
+            class="popup__cross-image"
+          />
+        </button>
+      </div>
+    </div>
+
+    <div class="popup popup_50-opacity popup-new-avatar popup_opened">
+      <!-- popup_opened писать сюда -->
+      <div class="popup__container popup__container_avatar-input">
+        <form name="new-avatar" class="popup__userdata-input">
+          <h2 class="popup__container-name">Обновить аватар</h2>
+
+          <input
+            type="url"
+            class="popup__input-field popup__input-field_avatar-input"
+            name="avatar_link"
+            value=""
+            placeholder="Ссылка на картинку аватара"
+            required
+          />
+          <span class="picture_link-error popup__input-error"> </span>
+
+          <button
+            type="submit"
+            class="popup__btn-save popup__btn-save_avatar-input"
+          >
+            Создать
+          </button>
+        </form>
         <button type="button" class="popup__btn-close">
           <img
             src="<%=require('./images/close_icon.svg')%>"

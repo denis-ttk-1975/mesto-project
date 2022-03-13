@@ -59,14 +59,14 @@ const configDeleteLike = {
   },
 };
 
-// const configGetCard = {
-//   method: "GET",
-//   baseUrl: "https://nomoreparties.co/v1/plus-cohort7/cards/",
-//   headers: {
-//     authorization: "62256703-4f1c-4e78-bfd6-410f01323be3",
-//     "Content-Type": "application/json",
-//   },
-// };
+const configNewAvatar = {
+  method: "PATCH",
+  baseUrl: "https://nomoreparties.co/v1/plus-cohort7/users/me/avatar",
+  headers: {
+    authorization: "62256703-4f1c-4e78-bfd6-410f01323be3",
+    "Content-Type": "application/json",
+  },
+};
 
 export const getUserProfile = () => {
   return fetch(configAvatar.baseUrl, { headers: configAvatar.headers }).then(
@@ -123,9 +123,12 @@ export const deleteLike = (cardId) => {
   });
 };
 
-// export const getCard = (cardId) => {
-//   return fetch(configGetCard.baseUrl + cardId, {
-//     // method: configGetCard.method,
-//     headers: configGetCard.headers,
-//   });
-// };
+export const loadNewAvatar = (url) => {
+  return fetch(configNewAvatar.baseUrl, {
+    method: configNewAvatar.method,
+    headers: configNewAvatar.headers,
+    body: JSON.stringify({
+      avatar: url,
+    }),
+  });
+};

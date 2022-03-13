@@ -4,8 +4,13 @@ import { setUserProfile } from "./api.js";
 
 import { summonProfile } from "./index.js";
 
+// получаем поля блока Profile для дальнейшего внесения в попап который вносит правки в имя и профессию
+
 const profileMemberName = document.querySelector(".profile__member-name");
 const profileMemberOccupation = document.querySelector(".profile__lower-text");
+
+// получаем поля и элементы попапа правок для Profile
+
 export const popupProfileInput = document.querySelector(".popup-profile-input");
 
 const popupInputForm = popupProfileInput.querySelector(
@@ -21,6 +26,8 @@ const profileInputs = popupProfileInput.querySelectorAll(".popup__input-field");
 const profileSubmitButton =
   popupProfileInput.querySelector('[type = "submit"]');
 
+// получаем поля и элементы попапа правок для NewPlace
+
 export const popupNewPlaceInput = document.querySelector(".popup-new-place");
 export const popupNewPlaceForm = popupNewPlaceInput.querySelector(
   ".popup__userdata-input"
@@ -35,11 +42,33 @@ export const inputsPictureLinkNewPlacePopup = popupNewPlaceForm.querySelector(
 const placeInputs = popupNewPlaceInput.querySelectorAll(".popup__input-field");
 const placeSubmitButton = popupNewPlaceInput.querySelector('[type = "submit"]');
 
+// получаем поля и элементы попапа  для BigPicture
+
 export const popupBigPicture = document.querySelector(".popup-big-picture");
 const popupBigPictureImage = popupBigPicture.querySelector(".popup__picture");
 const popupBigPictureFigcaption = popupBigPicture.querySelector(
   ".popup__picture-figcaption"
 );
+
+// получаем поля и элементы попапа правок для NewAvatar
+
+export const popupNewAvatarInput = document.querySelector(".popup-new-avatar");
+
+export const popupNewAvatarForm = popupNewAvatarInput.querySelector(
+  ".popup__userdata-input"
+);
+
+export const inputsAvatarLinkNewAvatarPopup = popupNewAvatarForm.querySelector(
+  'input[name = "avatar_link"]'
+);
+
+const avatarInputs = popupNewAvatarInput.querySelectorAll(
+  ".popup__input-field"
+);
+const avatarSubmitButton =
+  popupNewAvatarInput.querySelector('[type = "submit"]');
+
+// общие функции открытия и закрытия попап - навешиваем класс и слушатель для закрытия по Esc
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
@@ -51,6 +80,8 @@ export function closePopup(popup) {
   document.removeEventListener("keydown", closeByEscape);
 }
 
+// функции для попапа редактирования Profile
+
 export function openProfilePopup(config) {
   inputsFullNameProfilePopup.value = profileMemberName.textContent;
   inputsAboutProfilePopup.value = profileMemberOccupation.textContent;
@@ -61,10 +92,6 @@ export function openProfilePopup(config) {
 }
 
 export function closeProfilePopup() {
-  // inputsFullNameProfilePopup.value = "";
-  // inputsAboutProfilePopup.value = "";
-  // hideInputError(popupProfileInput, inputsFullNameProfilePopup);
-  // hideInputError(popupProfileInput, inputsAboutProfilePopup);
   closePopup(popupProfileInput);
 }
 
@@ -82,6 +109,8 @@ export function saveProfileData(evt) {
   closePopup(popupProfileInput);
 }
 
+// функции для попапа NewPlace
+
 export function openNewPlacePopup(config) {
   hideInputError(popupNewPlaceInput, inputsPlaceNameNewPlacePopup, config);
   hideInputError(popupNewPlaceInput, inputsPictureLinkNewPlacePopup, config);
@@ -92,12 +121,10 @@ export function openNewPlacePopup(config) {
 }
 
 export function closeNewPlacePopup() {
-  // inputsPlaceNameNewPlacePopup.value = "";
-  // inputsPictureLinkNewPlacePopup.value = "";
-  // hideInputError(popupNewPlaceInput, inputsPlaceNameNewPlacePopup);
-  // hideInputError(popupNewPlaceInput, inputsPictureLinkNewPlacePopup);
   closePopup(popupNewPlaceInput);
 }
+
+// функции для открытия и закрытия большой картинки карточки
 
 export function closeBigPicturePopup() {
   closePopup(popupBigPicture);
@@ -109,6 +136,22 @@ export function openPictureFullView(clickedPicture) {
   popupBigPictureFigcaption.textContent = clickedPicture.alt;
   openPopup(popupBigPicture);
 }
+
+// функции для попапа NewAvatar
+
+export function openNewAvatarPopup(config) {
+  hideInputError(popupNewAvatarInput, inputsAvatarLinkNewAvatarPopup, config);
+
+  inputsAvatarLinkNewAvatarPopup.value = "";
+  toggleButtonState(Array.from(avatarInputs), avatarSubmitButton, config);
+  openPopup(popupNewAvatarInput);
+}
+
+export function closeNewAvatarPopup() {
+  closePopup(popupNewAvatarInput);
+}
+
+// функция закрытия попап при клике на зону overlay - за пределами формы запросов
 
 export function overlayClickHandler(event, popupName, callBackFunction) {
   const target = event.target;
@@ -129,8 +172,5 @@ export function overlayClickHandler(event, popupName, callBackFunction) {
 function closeByEscape(event) {
   if (event.key === "Escape") {
     closePopup(document.querySelector(".popup_opened"));
-    // closeProfilePopup();
-    // closeNewPlacePopup();
-    // closeBigPicturePopup();
   }
 }

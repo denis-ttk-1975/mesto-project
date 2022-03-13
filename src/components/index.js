@@ -4,6 +4,7 @@ import {
   //constants
   popupProfileInput,
   popupNewPlaceInput,
+  popupNewAvatarInput,
   popupBigPicture,
   //functions
   openProfilePopup,
@@ -11,13 +12,15 @@ import {
   saveProfileData,
   openNewPlacePopup,
   closeNewPlacePopup,
+  openNewAvatarPopup,
+  closeNewAvatarPopup,
   closeBigPicturePopup,
   overlayClickHandler,
 } from "./modal.js";
 
 import { enableValidation } from "./validate.js";
 
-import { addNewPlaceCard, createElementsArea } from "./card.js";
+import { addNewPlaceCard, createElementsArea, addNewAvatar } from "./card.js";
 
 import { getUserProfile, getCardsArray } from "./api.js";
 
@@ -36,9 +39,13 @@ export let userID;
 
 const profileEditButton = document.querySelector(".profile__edit-button");
 const profileAddPlaceButton = document.querySelector(".profile__add");
+const profileNewAvatarButton = document.querySelector(
+  ".profile__overlay-avatar"
+);
 
 const profileInputForm = document.querySelector('form[name="user-data"]');
 const newPlaceInputForm = document.querySelector('form[name="new-place"]');
+const newAvatarInputForm = document.querySelector('form[name="new-avatar"]');
 
 const popupCloseProfileInputButton =
   popupProfileInput.querySelector(".popup__btn-close");
@@ -49,34 +56,10 @@ const popupCloseNewPlaceButton =
 const popupCloseBigPictureButton =
   popupBigPicture.querySelector(".popup__btn-close");
 
-// const popupWindows = document.querySelectorAll(".popup");
+const popupCloseNewAvatarButton =
+  popupNewAvatarInput.querySelector(".popup__btn-close");
 
-// const initialCards = [
-//   {
-//     name: "Архыз",
-//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-//   },
-//   {
-//     name: "Челябинская область",
-//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-//   },
-//   {
-//     name: "Иваново",
-//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-//   },
-//   {
-//     name: "Камчатка",
-//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-//   },
-//   {
-//     name: "Холмогорский район",
-//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-//   },
-//   {
-//     name: "Байкал",
-//     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-//   },
-// ];
+// const popupWindows = document.querySelectorAll(".popup");
 
 //!!!Создание поля карточек!!!
 getCardsArray().then((res) => {
@@ -109,6 +92,15 @@ popupBigPicture.addEventListener("mousedown", (event) =>
   overlayClickHandler(event, popupBigPicture, closeBigPicturePopup)
 );
 
+profileNewAvatarButton.addEventListener("click", () =>
+  openNewAvatarPopup(config)
+);
+popupCloseNewAvatarButton.addEventListener("click", closeNewAvatarPopup);
+newAvatarInputForm.addEventListener("submit", addNewAvatar);
+popupNewAvatarInput.addEventListener("mousedown", (event) =>
+  overlayClickHandler(event, popupNewAvatarInput, closeNewAvatarPopup)
+);
+
 enableValidation(config);
 
 export function summonProfile() {
@@ -130,22 +122,3 @@ export function summonProfile() {
 }
 
 summonProfile();
-
-// profile__avatar"
-//           />
-//           <div class="profile__text-block">
-//             <div class="profile__upper-text">
-//               <h1 class="profile__member-name">Жак-Ив Кусто</h1>
-//               <button type="button" class="profile__edit-button">
-//                 <img
-//                   src="<%=require('./images/edit_button.svg')%>"
-//                   alt="Клавиша редактирования"
-//                   class="profile__image-edit-button"
-//                 />
-//               </button>
-//             </div>
-//             <p class="profile__lower-text">Исследователь океана</p
-
-// console.log(userProfile);
-
-// console.log("profileCartData:", profileCartData);

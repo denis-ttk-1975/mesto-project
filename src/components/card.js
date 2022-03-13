@@ -7,6 +7,8 @@ import {
   popupNewPlaceInput,
   inputsPlaceNameNewPlacePopup,
   inputsPictureLinkNewPlacePopup,
+  popupNewAvatarInput,
+  inputsAvatarLinkNewAvatarPopup,
 } from "./modal.js";
 
 import {
@@ -15,16 +17,17 @@ import {
   deleteCard,
   setLike,
   deleteLike,
+  loadNewAvatar,
 } from "./api.js";
 
-import { userID } from "./index.js";
-
+import { userID, summonProfile } from "./index.js";
+//! функция проверки есть ли у карточки лайк поставленный текущим пользователем ранее и сохраненный в массиве на сервере
 function findUserLike(likeData, myUserId) {
   return likeData.some(function (likerData) {
     return myUserId === likerData._id;
   });
 }
-
+//! функция удаления и добавления лайка от текущего пользователя с окрашиванием сердечка
 function likeButtonHandler(evt) {
   const cardID = evt.target.closest(".element").dataset.cardId;
   const likeCounter = evt.target.nextElementSibling;
@@ -47,7 +50,7 @@ function likeButtonHandler(evt) {
 
   evt.target.classList.toggle("element__like-btn_liked");
 }
-
+//! функция создания карточки из объекта с набором данных для карточки
 function createCard(source, title, rating, ownerID, cardID, likes) {
   const newCardElement = cardTemplate.querySelector(".element").cloneNode(true);
   const cardImage = newCardElement.querySelector(".element__mask");
@@ -93,15 +96,24 @@ function createCard(source, title, rating, ownerID, cardID, likes) {
   // возвращаем готовую карточку
   return newCardElement;
 }
-
+//! функция создания поля с карточками из массива
+export function createElementsArea(array) {
+  elementsArea.innerHTML = "";
+  array.forEach(function (item) {
+    const newElement = createCard(
+      item.link,
+      item.name,
+      item.likes.length,
+      item.owner._id,
+      item._id,
+      item.likes
+    );
+    elementsArea.prepend(newElement);
+  });
+}
+//! функция загрузки массива с данными карточек из сервера и формирования из него поля карточек
 export function addNewPlaceCard(evt) {
   evt.preventDefault();
-
-  // const newElement = createCard(
-  //   inputsPictureLinkNewPlacePopup.value,
-  //   inputsPlaceNameNewPlacePopup.value
-  // );
-  // elementsArea.prepend(newElement);
 
   setNewCard(
     inputsPlaceNameNewPlacePopup.value,
@@ -116,18 +128,21 @@ export function addNewPlaceCard(evt) {
   inputsPictureLinkNewPlacePopup.value = "";
   closePopup(popupNewPlaceInput);
 }
+//! функция загрузки картинки нового аватара
+export function addNewAvatar(evt) {
+  evt.preventDefault();
 
-export function createElementsArea(array) {
-  elementsArea.innerHTML = "";
-  array.forEach(function (item) {
-    const newElement = createCard(
-      item.link,
-      item.name,
-      item.likes.length,
-      item.owner._id,
-      item._id,
-      item.likes
-    );
-    elementsArea.prepend(newElement);
-  });
+  console.log("Adding NewAvatar!!!");
+
+  const url = inputsAvatarLinkNewAvatarPopup.value;
+
+  loadNewAvatar(url)
+    .then((res) => res.json())
+    .then((res) => {
+      console.log(res);
+      summonProfile();
+    });
+
+  inputsAvatarLinkNewAvatarPopup.value = "";
+  closePopup(popupNewAvatarInput);
 }

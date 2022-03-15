@@ -1,67 +1,5 @@
-const configAvatar = {
-  baseUrl: "https://nomoreparties.co/v1/plus-cohort7/users/me",
-  headers: {
-    authorization: "62256703-4f1c-4e78-bfd6-410f01323be3",
-    "Content-Type": "application/json",
-  },
-};
-
-const configCardsField = {
-  baseUrl: "https://nomoreparties.co/v1/plus-cohort7/cards",
-  headers: {
-    authorization: "62256703-4f1c-4e78-bfd6-410f01323be3",
-    "Content-Type": "application/json",
-  },
-};
-
-const configPatchAvatar = {
-  method: "PATCH",
-  baseUrl: "https://nomoreparties.co/v1/plus-cohort7/users/me",
-  headers: {
-    authorization: "62256703-4f1c-4e78-bfd6-410f01323be3",
-    "Content-Type": "application/json",
-  },
-};
-
-const configAddCard = {
-  method: "POST",
-  baseUrl: "https://nomoreparties.co/v1/plus-cohort7/cards",
-  headers: {
-    authorization: "62256703-4f1c-4e78-bfd6-410f01323be3",
-    "Content-Type": "application/json",
-  },
-};
-
-const configDeleteCard = {
-  method: "DELETE",
-  baseUrl: "https://nomoreparties.co/v1/plus-cohort7/cards/",
-  headers: {
-    authorization: "62256703-4f1c-4e78-bfd6-410f01323be3",
-    "Content-Type": "application/json",
-  },
-};
-
-const configSetLike = {
-  method: "PUT",
-  baseUrl: "https://nomoreparties.co/v1/plus-cohort7/cards/likes/",
-  headers: {
-    authorization: "62256703-4f1c-4e78-bfd6-410f01323be3",
-    "Content-Type": "application/json",
-  },
-};
-
-const configDeleteLike = {
-  method: "DELETE",
-  baseUrl: "https://nomoreparties.co/v1/plus-cohort7/cards/likes/",
-  headers: {
-    authorization: "62256703-4f1c-4e78-bfd6-410f01323be3",
-    "Content-Type": "application/json",
-  },
-};
-
-const configNewAvatar = {
-  method: "PATCH",
-  baseUrl: "https://nomoreparties.co/v1/plus-cohort7/users/me/avatar",
+const config = {
+  baseUrl: "https://nomoreparties.co/v1/plus-cohort7/",
   headers: {
     authorization: "62256703-4f1c-4e78-bfd6-410f01323be3",
     "Content-Type": "application/json",
@@ -69,21 +7,21 @@ const configNewAvatar = {
 };
 
 export const getUserProfile = () => {
-  return fetch(configAvatar.baseUrl, { headers: configAvatar.headers }).then(
-    (res) => res.json()
-  );
+  return fetch(config.baseUrl + "users/me", {
+    headers: config.headers,
+  }).then((res) => res.json());
 };
 
 export const getCardsArray = () => {
-  return fetch(configCardsField.baseUrl, {
-    headers: configCardsField.headers,
+  return fetch(config.baseUrl + "cards", {
+    headers: config.headers,
   }).then((res) => res.json());
 };
 
 export const setUserProfile = (name, about) => {
-  return fetch(configPatchAvatar.baseUrl, {
-    method: configPatchAvatar.method,
-    headers: configPatchAvatar.headers,
+  return fetch(config.baseUrl + "users/me", {
+    method: "PATCH",
+    headers: config.headers,
     body: JSON.stringify({
       name: name,
       about: about,
@@ -92,9 +30,9 @@ export const setUserProfile = (name, about) => {
 };
 
 export const setNewCard = (name, link) => {
-  return fetch(configAddCard.baseUrl, {
-    method: configAddCard.method,
-    headers: configAddCard.headers,
+  return fetch(config.baseUrl + "cards", {
+    method: "POST",
+    headers: config.headers,
     body: JSON.stringify({
       name: name,
       link: link,
@@ -103,30 +41,30 @@ export const setNewCard = (name, link) => {
 };
 
 export const deleteCard = (cardId) => {
-  return fetch(configDeleteCard.baseUrl + cardId, {
-    method: configDeleteCard.method,
-    headers: configDeleteCard.headers,
+  return fetch(config.baseUrl + "cards/" + cardId, {
+    method: "DELETE",
+    headers: config.headers,
   });
 };
 
 export const setLike = (cardId) => {
-  return fetch(configSetLike.baseUrl + cardId, {
-    method: configSetLike.method,
-    headers: configSetLike.headers,
+  return fetch(config.baseUrl + "cards/likes/" + cardId, {
+    method: "put",
+    headers: config.headers,
   });
 };
 
 export const deleteLike = (cardId) => {
-  return fetch(configDeleteLike.baseUrl + cardId, {
-    method: configDeleteLike.method,
-    headers: configDeleteLike.headers,
+  return fetch(config.baseUrl + "cards/likes/" + cardId, {
+    method: "delete",
+    headers: config.headers,
   });
 };
 
 export const loadNewAvatar = (url) => {
-  return fetch(configNewAvatar.baseUrl, {
-    method: configNewAvatar.method,
-    headers: configNewAvatar.headers,
+  return fetch(config.baseUrl + "users/me/avatar", {
+    method: "PATCH",
+    headers: config.headers,
     body: JSON.stringify({
       avatar: url,
     }),

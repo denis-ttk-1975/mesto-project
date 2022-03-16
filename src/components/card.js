@@ -34,7 +34,6 @@ function likeButtonHandler(evt) {
 
   if (evt.target.classList.contains("element__like-btn_liked")) {
     deleteLike(cardID)
-      .then((res) => res.json())
       .then((res) => {
         likeCounter.textContent = res.likes.length;
       })
@@ -43,7 +42,6 @@ function likeButtonHandler(evt) {
       });
   } else {
     setLike(cardID)
-      .then((res) => res.json())
       .then((res) => {
         likeCounter.textContent = res.likes.length;
       })
@@ -93,13 +91,12 @@ function createCard(source, title, rating, ownerID, cardID, likes) {
       const cardId = evt.target.closest(".element").dataset.cardId;
       deleteCard(cardId)
         .then((res) => {
-          if (res.ok) {
-            getCardsArray()
-              .then((res) => createElementsArea(res))
-              .catch((err) => {
-                console.log(err);
-              });
-          }
+          //! аргумент надо задействовать или убрать
+          getCardsArray()
+            .then((res) => createElementsArea(res))
+            .catch((err) => {
+              console.log(err);
+            });
         })
         .catch((err) => {
           console.log(err);
@@ -135,13 +132,11 @@ export function addNewPlaceCard(evt) {
     inputsPictureLinkNewPlacePopup.value
   )
     .then((res) => {
-      if (res.ok) {
-        getCardsArray()
-          .then((res) => createElementsArea(res))
-          .catch((err) => {
-            console.log(err);
-          });
-      }
+      getCardsArray()
+        .then((res) => createElementsArea(res))
+        .catch((err) => {
+          console.log(err);
+        });
     })
     .catch((err) => {
       console.log(err);
@@ -165,7 +160,6 @@ export function addNewAvatar(evt) {
   const url = inputsAvatarLinkNewAvatarPopup.value;
 
   loadNewAvatar(url)
-    .then((res) => res.json())
     .then((res) => {
       document.querySelector(".profile__member-name").textContent = res.name;
       document.querySelector(".profile__lower-text").textContent = res.about;

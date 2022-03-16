@@ -6,16 +6,23 @@ const config = {
   },
 };
 
+function checkResponse(res) {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Ошибка ${res.status}`);
+}
+
 export const getUserProfile = () => {
   return fetch(config.baseUrl + "users/me", {
     headers: config.headers,
-  }).then((res) => res.json());
+  }).then(checkResponse);
 };
 
 export const getCardsArray = () => {
   return fetch(config.baseUrl + "cards", {
     headers: config.headers,
-  }).then((res) => res.json());
+  }).then(checkResponse);
 };
 
 export const setUserProfile = (name, about) => {
@@ -26,7 +33,7 @@ export const setUserProfile = (name, about) => {
       name: name,
       about: about,
     }),
-  });
+  }).then(checkResponse);
 };
 
 export const setNewCard = (name, link) => {
@@ -37,28 +44,28 @@ export const setNewCard = (name, link) => {
       name: name,
       link: link,
     }),
-  });
+  }).then(checkResponse);
 };
 
 export const deleteCard = (cardId) => {
   return fetch(config.baseUrl + "cards/" + cardId, {
     method: "DELETE",
     headers: config.headers,
-  });
+  }).then(checkResponse);
 };
 
 export const setLike = (cardId) => {
   return fetch(config.baseUrl + "cards/likes/" + cardId, {
     method: "put",
     headers: config.headers,
-  });
+  }).then(checkResponse);
 };
 
 export const deleteLike = (cardId) => {
   return fetch(config.baseUrl + "cards/likes/" + cardId, {
     method: "delete",
     headers: config.headers,
-  });
+  }).then(checkResponse);
 };
 
 export const loadNewAvatar = (url) => {
@@ -68,5 +75,5 @@ export const loadNewAvatar = (url) => {
     body: JSON.stringify({
       avatar: url,
     }),
-  });
+  }).then(checkResponse);
 };

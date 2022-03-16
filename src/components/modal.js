@@ -103,11 +103,10 @@ export function saveProfileData(evt) {
   const newAbout = inputsAboutProfilePopup.value;
   setUserProfile(newName, newAbout)
     .then((res) => {
-      if (res.ok) {
-        summonProfile();
-      } else {
-        return Promise.reject(res.status);
-      }
+      const userProfileName = document.querySelector(".profile__member-name");
+      const userProfileAbout = document.querySelector(".profile__lower-text");
+      userProfileName.textContent = res.name;
+      userProfileAbout.textContent = res.about;
     })
     .catch((err) => {
       console.log(err);

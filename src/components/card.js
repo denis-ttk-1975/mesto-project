@@ -137,6 +137,7 @@ export function addNewPlaceCard(evt) {
         .catch((err) => {
           console.log(err);
         });
+      closePopup(popupNewPlaceInput);
     })
     .catch((err) => {
       console.log(err);
@@ -145,8 +146,6 @@ export function addNewPlaceCard(evt) {
       document.querySelector(".popup__btn-save_new-place-input").textContent =
         "Создать";
     });
-
-  closePopup(popupNewPlaceInput);
 }
 //! функция загрузки картинки нового аватара
 export function addNewAvatar(evt) {
@@ -162,6 +161,7 @@ export function addNewAvatar(evt) {
       document.querySelector(".profile__member-name").textContent = res.name;
       document.querySelector(".profile__lower-text").textContent = res.about;
       document.querySelector(".profile__avatar").src = res.avatar;
+      closePopup(popupNewAvatarInput);
     })
     .catch((err) => {
       console.log(err);
@@ -170,6 +170,4 @@ export function addNewAvatar(evt) {
       document.querySelector(".popup__btn-save_avatar-input").textContent =
         "Сохранить";
     });
-
-  closePopup(popupNewAvatarInput);
 }

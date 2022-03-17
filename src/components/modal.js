@@ -107,13 +107,12 @@ export function saveProfileData(evt) {
       const userProfileAbout = document.querySelector(".profile__lower-text");
       userProfileName.textContent = res.name;
       userProfileAbout.textContent = res.about;
+      closePopup(popupProfileInput);
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => (profileSubmitButton.textContent = "Сохранить"));
-
-  closePopup(popupProfileInput);
 }
 
 // функции для попапа NewPlace

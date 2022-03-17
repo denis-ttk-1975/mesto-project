@@ -124,7 +124,7 @@ export function createElementsArea(array) {
 //! и формирования из него нового поля карточек
 export function addNewPlaceCard(evt) {
   evt.preventDefault();
-  document.querySelector(".popup__btn-save_new-place-input").innerHTML =
+  document.querySelector(".popup__btn-save_new-place-input").textContent =
     "Сохранение...";
 
   setNewCard(
@@ -142,19 +142,17 @@ export function addNewPlaceCard(evt) {
       console.log(err);
     })
     .finally(() => {
-      document.querySelector(".popup__btn-save_new-place-input").innerHTML =
+      document.querySelector(".popup__btn-save_new-place-input").textContent =
         "Создать";
     });
 
   closePopup(popupNewPlaceInput);
-  // document.querySelector(".popup__btn-save_new-place-input").innerHTML =
-  //   "Создать";
 }
 //! функция загрузки картинки нового аватара
 export function addNewAvatar(evt) {
   evt.preventDefault();
 
-  document.querySelector(".popup__btn-save_avatar-input").innerHTML =
+  document.querySelector(".popup__btn-save_avatar-input").textContent =
     "Сохранение...";
 
   const url = inputsAvatarLinkNewAvatarPopup.value;
@@ -169,11 +167,9 @@ export function addNewAvatar(evt) {
       console.log(err);
     })
     .finally(() => {
-      document.querySelector(".popup__btn-save_avatar-input").innerHTML =
+      document.querySelector(".popup__btn-save_avatar-input").textContent =
         "Сохранить";
     });
 
   closePopup(popupNewAvatarInput);
-  // document.querySelector(".popup__btn-save_avatar-input").innerHTML =
-  //   "Сохранить";
 }

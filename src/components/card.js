@@ -44,13 +44,12 @@ function likeButtonHandler(evt) {
     setLike(cardID)
       .then((res) => {
         likeCounter.textContent = res.likes.length;
+        evt.target.classList.toggle("element__like-btn_liked");
       })
       .catch((err) => {
         console.log(err);
       });
   }
-
-  evt.target.classList.toggle("element__like-btn_liked");
 }
 //! функция создания карточки из объекта с набором данных для карточки
 function createCard(source, title, rating, ownerID, cardID, likes) {
@@ -88,15 +87,16 @@ function createCard(source, title, rating, ownerID, cardID, likes) {
   newCardElement
     .querySelector(".element__delete")
     .addEventListener("click", function (evt) {
-      const cardId = evt.target.closest(".element").dataset.cardId;
-      deleteCard(cardId)
+      const deletingCard = evt.target.closest(".element");
+      deleteCard(deletingCard.dataset.cardId)
         .then((res) => {
           //! аргумент надо задействовать или убрать
-          getCardsArray()
-            .then((res) => createElementsArea(res))
-            .catch((err) => {
-              console.log(err);
-            });
+          // getCardsArray()
+          //   .then((res) => createElementsArea(res))
+          //   .catch((err) => {
+          //     console.log(err);
+          //   });
+          deletingCard.remove();
         })
         .catch((err) => {
           console.log(err);
@@ -132,11 +132,15 @@ export function addNewPlaceCard(evt) {
     inputsPictureLinkNewPlacePopup.value
   )
     .then((res) => {
-      getCardsArray()
-        .then((res) => createElementsArea(res))
-        .catch((err) => {
-          console.log(err);
-        });
+      const newElement = createCard(
+        res.link,
+        res.name,
+        res.likes.length,
+        res.owner._id,
+        res._id,
+        res.likes
+      );
+      elementsArea.prepend(newElement);
       closePopup(popupNewPlaceInput);
     })
     .catch((err) => {

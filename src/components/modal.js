@@ -2,16 +2,7 @@ import { toggleButtonState, hideInputError } from "./validate.js";
 
 import { setUserProfile } from "./api.js";
 
-import {
-  userProfileAvatar,
-  userProfileName,
-  userProfileAbout,
-} from "./index.js";
-
-// получаем поля блока Profile для дальнейшего внесения в попап который вносит правки в имя и профессию
-
-// const profileMemberName = userProfileName;
-// const profileMemberOccupation = userProfileAbout;
+import { userProfileName, userProfileAbout } from "./index.js";
 
 // получаем поля и элементы попапа правок для Profile
 
@@ -95,10 +86,6 @@ export function openProfilePopup(config) {
   openPopup(popupProfileInput);
 }
 
-export function closeProfilePopup() {
-  closePopup(popupProfileInput);
-}
-
 export function saveProfileData(evt) {
   evt.preventDefault();
   profileSubmitButton.textContent = "Сохранение...";
@@ -128,15 +115,7 @@ export function openNewPlacePopup(config) {
   openPopup(popupNewPlaceInput);
 }
 
-export function closeNewPlacePopup() {
-  closePopup(popupNewPlaceInput);
-}
-
 // функции для открытия и закрытия большой картинки карточки
-
-export function closeBigPicturePopup() {
-  closePopup(popupBigPicture);
-}
 
 export function openPictureFullView(clickedPicture) {
   popupBigPictureImage.alt = clickedPicture.alt;
@@ -153,10 +132,6 @@ export function openNewAvatarPopup(config) {
   inputsAvatarLinkNewAvatarPopup.value = "";
   toggleButtonState(Array.from(avatarInputs), avatarSubmitButton, config);
   openPopup(popupNewAvatarInput);
-}
-
-export function closeNewAvatarPopup() {
-  closePopup(popupNewAvatarInput);
 }
 
 // функция закрытия попап при клике на зону overlay - за пределами формы запросов

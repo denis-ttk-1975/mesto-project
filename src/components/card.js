@@ -19,7 +19,6 @@ import {
 
 import {
   setNewCard,
-  getCardsArray,
   deleteCard,
   setLike,
   deleteLike,
@@ -31,7 +30,6 @@ import {
   userProfileName,
   userProfileAbout,
   userID,
-  summonProfile,
 } from "./index.js";
 //! функция проверки есть ли у карточки лайк поставленный текущим пользователем ранее и сохраненный в массиве на сервере
 function findUserLike(likeData, myUserId) {

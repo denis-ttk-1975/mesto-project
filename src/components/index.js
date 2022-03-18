@@ -1,21 +1,12 @@
 import "./../pages/index.css"; // добавляем импорт главного файла стилей
 
 import {
-  //constants
-  popupProfileInput,
-  popupNewPlaceInput,
-  popupNewAvatarInput,
-  popupBigPicture,
   //functions
   openProfilePopup,
-  closeProfilePopup,
   saveProfileData,
   openNewPlacePopup,
-  closeNewPlacePopup,
   openNewAvatarPopup,
-  closeNewAvatarPopup,
-  closeBigPicturePopup,
-  overlayClickHandler,
+  closePopup,
 } from "./modal.js";
 
 import { enableValidation } from "./validate.js";
@@ -52,50 +43,35 @@ const profileNewAvatarButton = document.querySelector(
 const profileInputForm = document.querySelector('form[name="user-data"]');
 const newPlaceInputForm = document.querySelector('form[name="new-place"]');
 const newAvatarInputForm = document.querySelector('form[name="new-avatar"]');
-// получаем кнопки закрытия форм для запуска закрытия форм
-const popupCloseProfileInputButton =
-  popupProfileInput.querySelector(".popup__btn-close");
 
-const popupCloseNewPlaceButton =
-  popupNewPlaceInput.querySelector(".popup__btn-close");
-
-const popupCloseBigPictureButton =
-  popupBigPicture.querySelector(".popup__btn-close");
-
-const popupCloseNewAvatarButton =
-  popupNewAvatarInput.querySelector(".popup__btn-close");
+// получаем NodeList из попапов для навешивания закрытия форм
+const popups = document.querySelectorAll(".popup");
 
 // навешивание слушателей на попапы
 
 profileEditButton.addEventListener("click", () => openProfilePopup(config));
-popupCloseProfileInputButton.addEventListener("click", closeProfilePopup);
 profileInputForm.addEventListener("submit", saveProfileData);
-popupProfileInput.addEventListener("mousedown", (event) =>
-  overlayClickHandler(event, popupProfileInput, closeProfilePopup)
-);
 
 profileAddPlaceButton.addEventListener("click", () =>
   openNewPlacePopup(config)
 );
-popupCloseNewPlaceButton.addEventListener("click", closeNewPlacePopup);
 newPlaceInputForm.addEventListener("submit", addNewPlaceCard);
-popupNewPlaceInput.addEventListener("mousedown", (event) =>
-  overlayClickHandler(event, popupNewPlaceInput, closeNewPlacePopup)
-);
-
-popupCloseBigPictureButton.addEventListener("click", closeBigPicturePopup);
-popupBigPicture.addEventListener("mousedown", (event) =>
-  overlayClickHandler(event, popupBigPicture, closeBigPicturePopup)
-);
 
 profileNewAvatarButton.addEventListener("click", () =>
   openNewAvatarPopup(config)
 );
-popupCloseNewAvatarButton.addEventListener("click", closeNewAvatarPopup);
 newAvatarInputForm.addEventListener("submit", addNewAvatar);
-popupNewAvatarInput.addEventListener("mousedown", (event) =>
-  overlayClickHandler(event, popupNewAvatarInput, closeNewAvatarPopup)
-);
+
+popups.forEach((popup) => {
+  popup.addEventListener("mousedown", (evt) => {
+    if (evt.target.classList.contains("popup_opened")) {
+      closePopup(popup);
+    }
+    if (evt.target.classList.contains("popup__cross-image")) {
+      closePopup(popup);
+    }
+  });
+});
 
 //! запуск валидации на все формы в попап окнах
 

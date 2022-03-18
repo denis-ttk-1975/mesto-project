@@ -38,9 +38,9 @@ export const config = {
 export let userID;
 
 // получаем области страницы пользователя с данными Profile для дальнейшего заполнения или изменения
-const userProfileAvatar = document.querySelector(".profile__avatar");
-const userProfileName = document.querySelector(".profile__member-name");
-const userProfileAbout = document.querySelector(".profile__lower-text");
+export const userProfileAvatar = document.querySelector(".profile__avatar");
+export const userProfileName = document.querySelector(".profile__member-name");
+export const userProfileAbout = document.querySelector(".profile__lower-text");
 
 // получаем кнопки для запуска попап
 const profileEditButton = document.querySelector(".profile__edit-button");

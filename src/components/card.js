@@ -1,5 +1,11 @@
 const elementsArea = document.querySelector(".elements");
 const cardTemplate = document.querySelector("#card-template").content;
+const newPlaceSubmitButton = document.querySelector(
+  ".popup__btn-save_new-place-input"
+);
+const newAvatarSubmitButton = document.querySelector(
+  ".popup__btn-save_avatar-input"
+);
 
 import {
   closePopup,
@@ -20,7 +26,13 @@ import {
   loadNewAvatar,
 } from "./api.js";
 
-import { userID, summonProfile } from "./index.js";
+import {
+  userProfileAvatar,
+  userProfileName,
+  userProfileAbout,
+  userID,
+  summonProfile,
+} from "./index.js";
 //! функция проверки есть ли у карточки лайк поставленный текущим пользователем ранее и сохраненный в массиве на сервере
 function findUserLike(likeData, myUserId) {
   return likeData.some(function (likerData) {
@@ -91,11 +103,7 @@ function createCard(source, title, rating, ownerID, cardID, likes) {
       deleteCard(deletingCard.dataset.cardId)
         .then((res) => {
           //! аргумент надо задействовать или убрать
-          // getCardsArray()
-          //   .then((res) => createElementsArea(res))
-          //   .catch((err) => {
-          //     console.log(err);
-          //   });
+
           deletingCard.remove();
         })
         .catch((err) => {
@@ -124,8 +132,7 @@ export function createElementsArea(array) {
 //! и формирования из него нового поля карточек
 export function addNewPlaceCard(evt) {
   evt.preventDefault();
-  document.querySelector(".popup__btn-save_new-place-input").textContent =
-    "Сохранение...";
+  newPlaceSubmitButton.textContent = "Сохранение...";
 
   setNewCard(
     inputsPlaceNameNewPlacePopup.value,
@@ -147,31 +154,28 @@ export function addNewPlaceCard(evt) {
       console.log(err);
     })
     .finally(() => {
-      document.querySelector(".popup__btn-save_new-place-input").textContent =
-        "Создать";
+      newPlaceSubmitButton.textContent = "Создать";
     });
 }
 //! функция загрузки картинки нового аватара
 export function addNewAvatar(evt) {
   evt.preventDefault();
 
-  document.querySelector(".popup__btn-save_avatar-input").textContent =
-    "Сохранение...";
+  newAvatarSubmitButton.textContent = "Сохранение...";
 
   const url = inputsAvatarLinkNewAvatarPopup.value;
 
   loadNewAvatar(url)
     .then((res) => {
-      document.querySelector(".profile__member-name").textContent = res.name;
-      document.querySelector(".profile__lower-text").textContent = res.about;
-      document.querySelector(".profile__avatar").src = res.avatar;
+      userProfileName.textContent = res.name;
+      userProfileAbout.textContent = res.about;
+      userProfileAvatar.src = res.avatar;
       closePopup(popupNewAvatarInput);
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => {
-      document.querySelector(".popup__btn-save_avatar-input").textContent =
-        "Сохранить";
+      newAvatarSubmitButton.textContent = "Сохранить";
     });
 }

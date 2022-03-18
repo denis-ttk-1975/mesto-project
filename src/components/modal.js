@@ -2,12 +2,16 @@ import { toggleButtonState, hideInputError } from "./validate.js";
 
 import { setUserProfile } from "./api.js";
 
-import { summonProfile } from "./index.js";
+import {
+  userProfileAvatar,
+  userProfileName,
+  userProfileAbout,
+} from "./index.js";
 
 // получаем поля блока Profile для дальнейшего внесения в попап который вносит правки в имя и профессию
 
-const profileMemberName = document.querySelector(".profile__member-name");
-const profileMemberOccupation = document.querySelector(".profile__lower-text");
+// const profileMemberName = userProfileName;
+// const profileMemberOccupation = userProfileAbout;
 
 // получаем поля и элементы попапа правок для Profile
 
@@ -83,8 +87,8 @@ export function closePopup(popup) {
 // функции для попапа редактирования Profile
 
 export function openProfilePopup(config) {
-  inputsFullNameProfilePopup.value = profileMemberName.textContent;
-  inputsAboutProfilePopup.value = profileMemberOccupation.textContent;
+  inputsFullNameProfilePopup.value = userProfileName.textContent;
+  inputsAboutProfilePopup.value = userProfileAbout.textContent;
   hideInputError(popupProfileInput, inputsFullNameProfilePopup, config);
   hideInputError(popupProfileInput, inputsAboutProfilePopup, config);
   toggleButtonState(Array.from(profileInputs), profileSubmitButton, config);
@@ -103,8 +107,6 @@ export function saveProfileData(evt) {
   const newAbout = inputsAboutProfilePopup.value;
   setUserProfile(newName, newAbout)
     .then((res) => {
-      const userProfileName = document.querySelector(".profile__member-name");
-      const userProfileAbout = document.querySelector(".profile__lower-text");
       userProfileName.textContent = res.name;
       userProfileAbout.textContent = res.about;
       closePopup(popupProfileInput);

@@ -47,7 +47,7 @@ const newAvatarInputForm = document.querySelector('form[name="new-avatar"]');
 // получаем NodeList из попапов для навешивания закрытия форм
 const popups = document.querySelectorAll(".popup");
 
-// навешивание слушателей на попапы
+// навешивание слушателей открытия и submit на попапы
 
 profileEditButton.addEventListener("click", () => openProfilePopup(config));
 profileInputForm.addEventListener("submit", saveProfileData);
@@ -61,6 +61,8 @@ profileNewAvatarButton.addEventListener("click", () =>
   openNewAvatarPopup(config)
 );
 newAvatarInputForm.addEventListener("submit", addNewAvatar);
+
+// навешивание слушателей на клик на кнопке закрытия и на клик на overlay для закрытия попапов
 
 popups.forEach((popup) => {
   popup.addEventListener("mousedown", (evt) => {

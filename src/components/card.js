@@ -46,6 +46,7 @@ function likeButtonHandler(evt) {
     deleteLike(cardID)
       .then((res) => {
         likeCounter.textContent = res.likes.length;
+        evt.target.classList.toggle("element__like-btn_liked");
       })
       .catch((err) => {
         console.log(err);

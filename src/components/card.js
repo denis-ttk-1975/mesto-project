@@ -124,7 +124,7 @@ export function createElementsArea(array) {
       item._id,
       item.likes
     );
-    elementsArea.prepend(newElement);
+    elementsArea.append(newElement);
   });
 }
 //! функция выгрузки на сервер данных о новой карточке и далее загрузки массива с данными карточек из сервера
